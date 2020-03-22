@@ -56,7 +56,7 @@
     }
   
     .container{
-      margin-top:100px; 
+      height: 95vh !important;
     }
   
     .header_container {

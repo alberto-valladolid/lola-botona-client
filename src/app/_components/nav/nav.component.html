@@ -1,1 +1,33 @@
-<p>nav works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="">Lola botona</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>  
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-20">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="">Calendario <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul *ngIf="showAdminBoard"  class="navbar-nav mr-20">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/admin">Administración </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" 
+        aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-alt"> {{username}}</i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-default">
+        <a  class="dropdown-item" routerLink="/ajustes">Ajustes</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" routerLink="" (click)="logout()">Cerrar sesión</a>
+      </div>
+    </li>
+  </ul>
+
+  </div>
+</nav>

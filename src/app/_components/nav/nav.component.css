@@ -1,0 +1,28 @@
+
+
+nav{
+    padding: 0rem;
+}
+
+nav a {
+    color: rgba(0,0,0,.7) !important;
+    margin-right:0px; 
+}
+
+nav>a {
+    padding: 0.8rem  1rem;
+}
+.navbar-collapse ul{
+    padding: .5rem 1rem;
+} 
+
+
+.navbar-collapse ul:hover , nav>a:hover{
+    color: #16181b;
+    text-decoration: none;
+    background-color: #e9ecef;
+  
+    cursor:pointer; 
+    
+}
+
