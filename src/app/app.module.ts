@@ -13,6 +13,8 @@ import { AdminPanelComponent } from './_components/admin-panel/admin-panel.compo
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
+import { DataTablesModule } from 'angular-datatables';
+
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
