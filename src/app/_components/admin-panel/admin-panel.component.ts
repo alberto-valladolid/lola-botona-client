@@ -35,21 +35,6 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      if(!this.roles.includes('ROLE_ADMIN')){
-        this.router.navigate([`404`]);
-      }
-
-      //this.username = user.username;
-    }
-
-
-
     this.retrieveUsers();
 
     this.dtOptions = {

@@ -9,14 +9,18 @@ import { AdminPanelComponent } from './_components/admin-panel/admin-panel.compo
 import { AddUserComponent } from './_components/admin-panel/add-user/add-user.component';
 import { EditUserComponent } from './_components/admin-panel/edit-user/edit-user.component';
 
+import{AuthGuard} from "./_guards/auth.guard"; 
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-
-  { path: 'admin', component: AdminPanelComponent },
+  { path: 'admin/user/add', component: AddUserComponent, canActivate:[AuthGuard]},
+  { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate:[AuthGuard]},
+  { path: 'admin', component: AdminPanelComponent, canActivate:[AuthGuard]},
+  { path: 'admin', component: AdminPanelComponent, canActivate:[AuthGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
-  { path: '**', component: PageNotFoundComponent },
-  { path: '404', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '404-pagina-no-encontrada',  pathMatch: 'full' },
+  { path: '404-pagina-no-encontrada', component: PageNotFoundComponent },
 ];
 
 @NgModule({
