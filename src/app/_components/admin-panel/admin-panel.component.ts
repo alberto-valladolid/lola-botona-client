@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../../_services/user.service';
 import { Observable, Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 
 
@@ -12,15 +14,40 @@ import { DataTableDirective } from 'angular-datatables';
 })
 export class AdminPanelComponent implements OnInit {
 
+
+  //For datatables
   users:any; 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   dtUsers :any;
+
+  //For update/detele users view
   @ViewChild(DataTableDirective) dtElement: DataTableDirective;
 
-  constructor(private usersService: UserService,  private chRef : ChangeDetectorRef,) { }
+
+  //For check if user is admin
+  isLoggedIn: boolean; 
+  private roles: string[];
+
+
+  constructor(private usersService: UserService,  private chRef : ChangeDetectorRef,private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
+
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      if(!this.roles.includes('ROLE_ADMIN')){
+        this.router.navigate([`404`]);
+      }
+
+      //this.username = user.username;
+    }
+
 
 
     this.retrieveUsers();

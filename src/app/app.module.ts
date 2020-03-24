@@ -14,6 +14,8 @@ import { AdminPanelComponent } from './_components/admin-panel/admin-panel.compo
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import { DataTablesModule } from 'angular-datatables';
+import { AddUserComponent } from './_components/admin-panel/add-user/add-user.component';
+import { EditUserComponent } from './_components/admin-panel/edit-user/edit-user.component';
 
 
 
@@ -23,7 +25,9 @@ import { DataTablesModule } from 'angular-datatables';
     LoginComponent,
     HomeComponent,
     NavComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
