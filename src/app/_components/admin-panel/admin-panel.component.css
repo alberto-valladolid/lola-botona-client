@@ -11,6 +11,16 @@ table tbody tr td:not(:last-child) {
     padding: 15px 10px !important; 
 }
 
-thead tr th::before , thead tr th::after{
+/* thead tr th::before , thead tr th::after{
     content: "";
+} */
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,.page-item.active .page-link {
+    background-color: #343a40 !important; 
+/* W3C */ }
+
+
+.page-item.active .page-link{
+    background-color: #343a40 !important; 
 }
