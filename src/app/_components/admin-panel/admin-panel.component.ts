@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../../_services/user.service';
+import { Observable, Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
+
+
 
 @Component({
   selector: 'app-admin-panel',
@@ -8,31 +12,26 @@ import { UserService } from '../../_services/user.service';
 })
 export class AdminPanelComponent implements OnInit {
 
+  users:any; 
   dtOptions: DataTables.Settings = {};
-  dtUsers =[
-    {"id": 101, "firstName": "Anil", "lastName": "Singh"},
-    {"id": 102, "firstName": "Reena", "lastName": "Singh"},
+  dtTrigger: Subject<any> = new Subject();
+  dtUsers :any;
+  @ViewChild(DataTableDirective) dtElement: DataTableDirective;
 
- 
-    {"id": 103, "firstName": "Aradhay", "lastName": "Simgh"},
-    {"id": 104, "firstName": "Dilip", "lastName": "Singh"},
-    {"id": 105, "firstName": "Alok", "lastName": "Singh"},
-    {"id": 106, "firstName": "Sunil", "lastName": "Singh"},
-    {"id": 107, "firstName": "Sushil", "lastName": "Singh"},
-    {"id": 108, "firstName": "Sheo", "lastName": "Shan"},
-    {"id": 109, "firstName": "Niranjan", "lastName": "R"},
-    {"id": 110, "firstName": "Lopa", "lastName": "Mudra"},
-    {"id": 111, "firstName": "Paramanand","lastName": "Tripathi"}
-  ];
+  constructor(private usersService: UserService,  private chRef : ChangeDetectorRef,) { }
 
   ngOnInit(): void {
+
+
+    this.retrieveUsers();
+
     this.dtOptions = {
       language: {
         "decimal":        "",
         "emptyTable":     "La tabla está vacía",
         "info":           "Mostrando de _START_ a _END_ de _TOTAL_  registros",
         "infoEmpty":      "Mostrando 0 de 0 registros",
-        "infoFiltered":   "(fitrados de _MAX_ registros totales)",
+        "infoFiltered":   "(Registros totales  _MAX_ )",
         "infoPostFix":    "",
         "thousands":      ",",
         "lengthMenu":     "Registros por página _MENU_ ",
@@ -43,8 +42,8 @@ export class AdminPanelComponent implements OnInit {
         "paginate": {
             "first":      "Primero",
             "last":       "Último",
-            "next":       "Siguiente",
-            "previous":   "Anterior"
+            "next":       "Sig",
+            "previous":   "Ant"
         },
         "aria": {
             "sortAscending":  ": Ordenar ascendentemente",
@@ -52,12 +51,49 @@ export class AdminPanelComponent implements OnInit {
         }
       },
 
-      data:this.dtUsers,
-      columns: [{title: 'User ID', data: 'id'},
-            {title: 'First Name', data: 'firstName'},
-            {title: 'Last Name', data: 'lastName' },
-            {title: 'Last Name', data: 'lastName' }]
     };
+
+  }
+
+
+  retrieveUsers() {
+    this.usersService.getAllUsers()
+      .subscribe(
+        data => {
+          this.users = data; 
+          this.chRef.detectChanges();
+          this.dtTrigger.next();
+        },
+        error => {
+          console.log(error);
+          
+    });
+  }
+
+
+  reRenderTable(){
+
+
+         this.dtElement.dtInstance.then((dtInstance : DataTables.Api) => 
+        {
+
+          console.log("actaulziando tabla"); 
+            // Destroy the table first in the current context
+            dtInstance.destroy();
+
+            this.usersService.getAllUsers()
+              .subscribe(
+                data => {
+                  this.users = data; 
+                  this.chRef.detectChanges();
+                  this.dtTrigger.next();
+                },
+                error => {
+                  console.log(error);
+            });
+
+        });
+
   }
 
 }

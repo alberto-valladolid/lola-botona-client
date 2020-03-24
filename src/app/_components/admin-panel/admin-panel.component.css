@@ -1,9 +1,16 @@
 .tableContainer{
     margin: 30px !important;
-
 }
 
 h3{
     text-align:center; 
     margin:50px 0px; 
+}
+
+table tbody tr td:not(:last-child) {
+    padding: 15px 10px !important; 
+}
+
+thead tr th::before , thead tr th::after{
+    content: "";
 }
