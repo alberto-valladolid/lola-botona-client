@@ -6,11 +6,17 @@
 .marginLeft20{
     margin-left: 20px; 
 }
+
+.row {
+
+    margin-right: 0px !important ;
+   margin-left: 0px !important; 
+}
  
-@media screen and (max-width: 767px){
+/* @media screen and (max-width: 767px){
 
     .user-container{
         margin: 30px 20px ; 
     }    
 
-}
+} */

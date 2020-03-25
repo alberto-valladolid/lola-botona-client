@@ -1,5 +1,5 @@
 .tableContainer{
-    margin: 30px !important;
+    margin: 30px 30px ;
 }
 
 h3{
@@ -30,22 +30,23 @@ table tbody tr td:not(:last-child) {
     padding: 0px 10px;
 }
 
-.row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: 15px !important;
-    margin-left: -15px !important; 
-}
+
+
+
 
 .buttonContainer{
     margin-left: 15px;
 }
 
+
+
+
+
 @media screen and (max-width: 767px){
 
 
+
+    
     .buttonContainer{
         display: flex;
         align-items: center;
@@ -62,6 +63,17 @@ table tbody tr td:not(:last-child) {
     
     .add-user{
         height:38px;  
+    }
+
+
+
+    .tableContainer{
+        margin: 30px -15px;
+    }    
+
+    .componentContainer{
+        margin-left:  20px;
+        margin-right:  20px;
     }
 
 }
