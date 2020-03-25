@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "lola-botona-client": {
@@ -24,15 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",    
-
-              "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",   
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.css",
+              "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
               "node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.css"
             ],
             "scripts": [
               "node_modules/datatables.net/js/jquery.dataTables.js",
-
-
               "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
               "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
               "node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.js"
@@ -98,6 +96,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -129,6 +128,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "lola-botona-client"
 }

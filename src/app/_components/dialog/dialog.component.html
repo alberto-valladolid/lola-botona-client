@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>¿Desea eliminar el usuario con el nombre {{data.user}} y el teléfono {{data.tlf}} ?</h2>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close class="float-left btn-dark">Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" class="float-right btn-dark btn-eliminar">Eliminar</button>
+</mat-dialog-actions>

@@ -16,7 +16,9 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { DataTablesModule } from 'angular-datatables';
 import { AddUserComponent } from './_components/admin-panel/add-user/add-user.component';
 import { EditUserComponent } from './_components/admin-panel/edit-user/edit-user.component';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogComponent } from './_components/dialog/dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -27,14 +29,17 @@ import { EditUserComponent } from './_components/admin-panel/edit-user/edit-user
     NavComponent,
     AdminPanelComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    NoopAnimationsModule,
+    MatDialogModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

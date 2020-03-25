@@ -4,16 +4,16 @@ import { Observable, Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
-
-
+import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.css']
 })
-export class AdminPanelComponent implements OnInit {
 
+export class AdminPanelComponent implements OnInit {
 
   //For datatables
   users:any; 
@@ -24,13 +24,11 @@ export class AdminPanelComponent implements OnInit {
   //For update/detele users view
   @ViewChild(DataTableDirective) dtElement: DataTableDirective;
 
-
   //For check if user is admin
   isLoggedIn: boolean; 
   private roles: string[];
 
-
-  constructor(private usersService: UserService,  private chRef : ChangeDetectorRef,private tokenStorageService: TokenStorageService, private router: Router) { }
+  constructor(private usersService: UserService,  private chRef : ChangeDetectorRef,private tokenStorageService: TokenStorageService, private router: Router,private matDialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -67,7 +65,6 @@ export class AdminPanelComponent implements OnInit {
 
   }
 
-
   retrieveUsers() {
     this.usersService.getAllUsers()
       .subscribe(
@@ -82,12 +79,8 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
-
   reRenderTable(){
-
-
-         this.dtElement.dtInstance.then((dtInstance : DataTables.Api) => 
-        {
+        this.dtElement.dtInstance.then((dtInstance : DataTables.Api) =>  {
 
           console.log("actaulziando tabla"); 
             // Destroy the table first in the current context
@@ -114,6 +107,31 @@ export class AdminPanelComponent implements OnInit {
 
   addUser(){
     this.router.navigate(['admin/user/add']);
+  }
+
+  deleteUser(id:string, user: string,tlf:string): void {
+    const dialogRef = this.matDialog.open(DialogComponent, {
+      height: '',
+      width: '',
+      data: {user: user,tlf:tlf}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log("borrando el usuario con el id: " + id + "y el nombre "+ user); // Pizza!
+ 
+        this.usersService.deleteUser(id).subscribe(
+          res =>{
+            console.log(res); 
+
+            this.reRenderTable();
+          },
+          err => console.log(err)
+        )
+
+      }
+    });
+    
   }
 
 

@@ -25,13 +25,11 @@ export class UserService {
     return this.http.post(requestUrl + '/users', user, { responseType: 'json' }); 
   }
 
-  // getUserBoard(): Observable<any> {
-  //   return this.http.get(config.serverApi + '/api/test/user', { responseType: 'text' });
-  // }
+  deleteUser(id : string){
+    return this.http.delete(requestUrl + '/users/' + id, { responseType: 'json' }); 
+  }
 
-  // getAdminBoard(): Observable<any> {
-  //   return this.http.get(config.serverApi + '/api/test/admin', { responseType: 'text' });
-  // }
+
 
 
 }

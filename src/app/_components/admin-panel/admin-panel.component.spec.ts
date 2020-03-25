@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AdminPanelComponent } from './admin-panel.component';
 
 describe('AdminPanelComponent', () => {
