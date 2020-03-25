@@ -21,11 +21,17 @@ export class UserService {
     return this.http.get(config.serverApi + '/api/test/all', { responseType: 'text' });
   }
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(config.serverApi + '/api/test/user', { responseType: 'text' });
+  addUser(user: {id: any, username: string, role: string, name: string, password: string}){
+    return this.http.post(requestUrl + '/users', user, { responseType: 'json' }); 
   }
 
-  getAdminBoard(): Observable<any> {
-    return this.http.get(config.serverApi + '/api/test/admin', { responseType: 'text' });
-  }
+  // getUserBoard(): Observable<any> {
+  //   return this.http.get(config.serverApi + '/api/test/user', { responseType: 'text' });
+  // }
+
+  // getAdminBoard(): Observable<any> {
+  //   return this.http.get(config.serverApi + '/api/test/admin', { responseType: 'text' });
+  // }
+
+
 }

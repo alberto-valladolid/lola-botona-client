@@ -72,7 +72,7 @@ export class AdminPanelComponent implements OnInit {
     this.usersService.getAllUsers()
       .subscribe(
         data => {
-          this.users = data; 
+          this.users = data;
           this.chRef.detectChanges();
           this.dtTrigger.next();
         },
@@ -96,7 +96,7 @@ export class AdminPanelComponent implements OnInit {
             this.usersService.getAllUsers()
               .subscribe(
                 data => {
-                  this.users = data; 
+                  this.users = data;              
                   this.chRef.detectChanges();
                   this.dtTrigger.next();
                 },
@@ -107,5 +107,14 @@ export class AdminPanelComponent implements OnInit {
         });
 
   }
+
+  editUser(id : string){
+    this.router.navigate(['admin/user/edit/'+id]);
+  }
+
+  addUser(){
+    this.router.navigate(['admin/user/add']);
+  }
+
 
 }

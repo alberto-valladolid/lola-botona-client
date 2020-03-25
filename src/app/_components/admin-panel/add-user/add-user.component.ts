@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { UserService } from '../../../_services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -7,9 +9,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor() { }
+  @HostBinding ('class') classes = 'row'; 
+
+  errorMsg = null; 
+  response:Object;
+
+  user  = {
+
+    id:null,
+    username: "",
+    role : "ROLE_USER",
+    name:"",
+    password : "lolabotonatemporal",        
+    
+  }; 
+
+  constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit(): void {
+ 
   }
+
+
+  onSubmit() {
+
+    this.errorMsg = null;   
+    console.log(this.user); 
+    this.userService.addUser(this.user).subscribe(
+      res =>{
+        this.router.navigate(['/admin']);
+      },
+      err =>{
+        console.log(err);
+        this.errorMsg = err.error.message; 
+      } 
+    )
+  }
+
 
 }

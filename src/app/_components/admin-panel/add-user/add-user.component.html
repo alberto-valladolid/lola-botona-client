@@ -1,1 +1,32 @@
-<p>add-user works!</p>
+<div class="col-md-8 user-container marginAuto">
+    <h2 class="text-center">Añadir usuario</h2>
+     <form  (ngSubmit)="onSubmit()"> 
+   
+          <div class="form-group">
+              <label for="username">Teléfono:</label>
+              <input type="text"  placeholder="Teléfono" id="username" name="username" [(ngModel)]="user.username" class="form-control" required autofocus>
+          </div>
+  
+          <div class="form-group">
+              <label for="name">Nombre:</label>
+              <input type="text"  placeholder="Nombre" id="name" name="name" [(ngModel)]="user.name"  class="form-control" required >
+          </div>
+
+          <div class="form-group">
+            <label for="pw">Contraseña:</label>
+            <input type="text"  placeholder="Contraseña" id="pw" name="pw" [(ngModel)]="user.password"  class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="role">Perfil:</label>
+              <input type="text" value="asdf" name="role" id="role" [(ngModel)]="user.role"  class="form-control" required disabled >
+          </div>
+
+          <div *ngIf="errorMsg" class="alert alert-danger">
+            {{errorMsg}}
+          </div>
+
+          <button class="btn btn-dark" type="submit" >Añadir</button>
+          <button class="btn btn-secondary marginLeft20"  routerLink="/admin">Volver</button>
+      </form>
+  </div> 
