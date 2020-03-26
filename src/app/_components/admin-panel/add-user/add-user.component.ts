@@ -19,7 +19,7 @@ export class AddUserComponent implements OnInit {
     username: "",
     role : "ROLE_USER",
     name:"",
-    password : "lolabotonatemporal",        
+    password : "temporal",        
     
   }; 
 

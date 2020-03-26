@@ -19,6 +19,8 @@ import { EditUserComponent } from './_components/admin-panel/edit-user/edit-user
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogComponent } from './_components/dialog/dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ProfileComponent } from './_components/profile/profile.component';
+import { ChangePasswordDialogComponent } from './_components/_dialogs/change-password-dialog/change-password-dialog.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     AdminPanelComponent,
     AddUserComponent,
     EditUserComponent,
-    DialogComponent
+    DialogComponent,
+    ProfileComponent,
+    ChangePasswordDialogComponent
   ],
   imports: [
     BrowserModule,
