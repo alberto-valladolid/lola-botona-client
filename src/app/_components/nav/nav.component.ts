@@ -28,7 +28,6 @@ export class NavComponent implements OnInit {
 
       this.username = user.name + " (" + user.username + ")";
 
-      console.log(user); 
     }
   }
 

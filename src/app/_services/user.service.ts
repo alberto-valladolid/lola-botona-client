@@ -25,11 +25,26 @@ export class UserService {
     return this.http.post(requestUrl + '/users', user, { responseType: 'json' }); 
   }
 
+  editUser(user: {id: any, username: string, role: string, name: string, password: string }){
+
+    console.log( "antes"+ user.password); 
+    if(!user.password){
+      user.password = ""; 
+    }
+    console.log("despues"+  user.password); 
+    return this.http.put(requestUrl + '/users/'+ user.id, user, { responseType: 'json' }); 
+  }
+
   deleteUser(id : string){
     return this.http.delete(requestUrl + '/users/' + id, { responseType: 'json' }); 
   }
 
 
+  getUserById(id : string): Observable<any>{
+    return this.http.get(requestUrl + '/users/' + id, { responseType: 'json' }); 
+  }
 
+
+  
 
 }

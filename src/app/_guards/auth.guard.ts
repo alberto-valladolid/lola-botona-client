@@ -24,8 +24,7 @@ export class AuthGuard implements CanActivate {
   
       if (this.isLoggedIn) {
         const user = this.tokenStorageService.getUser();
-        this.roles = user.roles;
-        console.log(this.roles); 
+        this.roles = user.roles;      
         if(this.roles.includes('ROLE_ADMIN')){          
           return true;
         }

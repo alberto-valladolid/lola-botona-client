@@ -12,7 +12,6 @@ export class AddUserComponent implements OnInit {
   @HostBinding ('class') classes = 'row'; 
 
   errorMsg = null; 
-  response:Object;
 
   user  = {
 
@@ -34,7 +33,7 @@ export class AddUserComponent implements OnInit {
   onSubmit() {
 
     this.errorMsg = null;   
-    console.log(this.user); 
+    //console.log(this.user); 
     this.userService.addUser(this.user).subscribe(
       res =>{
         this.router.navigate(['/admin']);

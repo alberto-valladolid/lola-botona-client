@@ -13,7 +13,7 @@
           </div>
 
           <div class="form-group">
-            <label for="pw">Contraseña:</label>
+            <label for="pw">Contraseña (Dejar en blanco si no se desea modificar) :</label>
             <input type="text"  placeholder="Contraseña" id="pw" name="pw" [(ngModel)]="user.password"  class="form-control" required>
           </div>
   
@@ -26,7 +26,7 @@
             {{errorMsg}}
           </div>
 
-          <button class="btn btn-dark" type="submit" >Añadir</button>
+          <button class="btn btn-dark" type="submit" >Guardar</button>
           <button class="btn btn-dark marginLeft20"  routerLink="/admin">Volver</button>
       </form>
   </div> 
