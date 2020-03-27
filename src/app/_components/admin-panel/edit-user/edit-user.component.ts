@@ -37,9 +37,7 @@ export class EditUserComponent implements OnInit {
       res =>{
 
         this.user = res; 
-
-         //console.log(this.user.username); 
-       
+               
       },
       err => console.log(err)
     )

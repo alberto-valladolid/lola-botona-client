@@ -1,10 +1,10 @@
 <div class="col-md-8 user-container marginAuto">
-    <h2 class="text-center">Modificar al usuario</h2>
+    <h2 class="text-center">Está modificando la cuenta de {{user.name}}</h2>
      <form  (ngSubmit)="onSubmit()"> 
    
           <div class="form-group">
               <label for="username">Teléfono:</label>
-              <input type="number"  placeholder="Teléfono" id="username" name="username" [(ngModel)]="user.username" class="form-control" required autofocus>
+              <input type="text"  placeholder="Teléfono" id="username" name="username" [(ngModel)]="user.username" class="form-control" required autofocus>
           </div>
   
           <div class="form-group">
@@ -14,7 +14,7 @@
 
           <div class="form-group">
             <label for="pw">Contraseña (Dejar en blanco si no se desea modificar) :</label>
-            <input type="text"  placeholder="Contraseña" id="pw" name="pw" [(ngModel)]="user.password"  class="form-control" required>
+            <input type="text"  placeholder="Contraseña" id="pw" name="pw" [(ngModel)]="user.password"  class="form-control" >
           </div>
   
           <div class="form-group">
