@@ -5,7 +5,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from '../_dialogs/delete-user-dialog/dialog.component';
 
 @Component({
   selector: 'app-admin-panel',

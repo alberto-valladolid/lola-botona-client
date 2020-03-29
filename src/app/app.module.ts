@@ -17,8 +17,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { AddUserComponent } from './_components/admin-panel/add-user/add-user.component';
 import { EditUserComponent } from './_components/admin-panel/edit-user/edit-user.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogComponent } from './_components/dialog/dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './_components/_dialogs/delete-user-dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileComponent } from './_components/profile/profile.component';
 import { ChangePasswordDialogComponent } from './_components/_dialogs/change-password-dialog/change-password-dialog.component';
 
