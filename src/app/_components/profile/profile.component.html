@@ -1,6 +1,6 @@
 <div class="col-md-8 user-container marginAuto">
 <h2 class="text-center">Perfil</h2>
-    <form  (ngSubmit)="onSubmit()"> 
+    <form #form='ngForm' ngNativeValidate (ngSubmit)="onSubmit()"> 
 
         <div class="form-group">
         <label for="pw">Contraseña actual:</label>
