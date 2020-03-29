@@ -37,7 +37,7 @@ export class UserService {
   }
 
   deleteUser(id : string){
-    return this.http.delete(  + '/users/' + id, { responseType: 'json' }); 
+    return this.http.delete( adminApiUrl + '/users/' + id, { responseType: 'json' }); 
   }
 
 
