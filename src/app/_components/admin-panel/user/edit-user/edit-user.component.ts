@@ -36,8 +36,11 @@ export class EditUserComponent implements OnInit {
     this.userService.getUserById(params.id).subscribe(
       res =>{
 
-        this.user = res; 
-               
+        this.user.id = res.id; 
+        this.user.username = res.username; 
+        this.user.role = res.role; 
+        this.user.name = res.name; 
+
       },
       err => console.log(err)
     )
@@ -49,10 +52,14 @@ export class EditUserComponent implements OnInit {
 
   onSubmit() {
 
+     console.log(this.user); 
+
+    // delete this.user.groupSet;
+    
     this.errorMsg = null;   
     this.userService.editUser(this.user).subscribe(
       res =>{
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/user']);
       },
       err =>{
         console.log(err);

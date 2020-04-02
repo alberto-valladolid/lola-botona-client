@@ -25,8 +25,8 @@ export class AdminPanelComponent implements OnInit {
   @ViewChild(DataTableDirective) dtElement: DataTableDirective;
 
   //For check if user is admin
-  isLoggedIn: boolean; 
-  private roles: string[];
+  // isLoggedIn: boolean; 
+  // private roles: string[];
 
   constructor(private usersService: UserService,  private chRef : ChangeDetectorRef,private tokenStorageService: TokenStorageService, private router: Router,private matDialog: MatDialog) { }
 

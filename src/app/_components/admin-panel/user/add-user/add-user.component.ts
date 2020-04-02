@@ -36,7 +36,7 @@ export class AddUserComponent implements OnInit {
     //console.log(this.user); 
     this.userService.addUser(this.user).subscribe(
       res =>{
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/user']);
       },
       err =>{
         console.log(err);
