@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { UserService } from '../../../_services/user.service';
+import { UserService } from '../../../../_services/user.service';
 import {Router, ActivatedRoute} from '@angular/router'; 
 
 

@@ -5,9 +5,13 @@ import { ProfileComponent } from './_components/profile/profile.component';
 import { LoginComponent } from './_components/login/login.component';
 import { HomeComponent } from './_components/home/home.component';
 import { PageNotFoundComponent } from './_components/page-not-found/page-not-found.component';
-import { AdminPanelComponent } from './_components/admin-panel/admin-panel.component';
-import { AddUserComponent } from './_components/admin-panel/add-user/add-user.component';
-import { EditUserComponent } from './_components/admin-panel/edit-user/edit-user.component';
+import { AdminPanelComponent } from './_components/admin-panel/user/admin-panel.component';
+import { AddUserComponent } from './_components/admin-panel/user/add-user/add-user.component';
+import { EditUserComponent } from './_components/admin-panel/user/edit-user/edit-user.component';
+import { GroupComponent } from './_components/admin-panel/group/group.component';
+import { AbsenceComponent } from './_components/admin-panel/user_group/absence/absence.component';
+import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
+
 
 import{AuthGuard} from "./_guards/auth.guard"; 
 
@@ -17,8 +21,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin/user/add', component: AddUserComponent, canActivate:[AuthGuard]},
   { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate:[AuthGuard]},
-  { path: 'admin', component: AdminPanelComponent, canActivate:[AuthGuard]},
-  { path: 'admin', component: AdminPanelComponent, canActivate:[AuthGuard]},
+  { path: 'admin/user', component: AdminPanelComponent, canActivate:[AuthGuard]},
+  { path: 'admin/group', component: GroupComponent, canActivate:[AuthGuard]},
+  { path: 'admin/absence', component: AbsenceComponent, canActivate:[AuthGuard]},
+  { path: 'admin/retrieve', component: RetrieveComponent, canActivate:[AuthGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
   { path: '**', redirectTo: '404-pagina-no-encontrada',  pathMatch: 'full' },
   { path: '404-pagina-no-encontrada', component: PageNotFoundComponent },

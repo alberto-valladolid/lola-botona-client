@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { UserService } from '../../_services/user.service';
+import { UserService } from '../../../_services/user.service';
 import { Observable, Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogComponent } from '../_dialogs/delete-user-dialog/dialog.component';
+import { DialogComponent } from '../../_dialogs/delete-user-dialog/dialog.component';
 
 @Component({
   selector: 'app-admin-panel',

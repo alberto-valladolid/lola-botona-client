@@ -9,20 +9,33 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-20">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="">Calendario <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink=""><i class="far fa-calendar-alt"> </i> Calendario <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul *ngIf="showAdminBoard"  class="navbar-nav mr-20">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/admin">Administración </a>
+     
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-users-cog"></i> Administración
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default">
+          <a  class="dropdown-item" routerLink="/admin/user">Usuarios</a>       
+          <a class="dropdown-item" routerLink="/admin/group" >Grupos</a>   
+          <a class="dropdown-item" routerLink="/admin/absencse" >Ausencias</a>
+          <a class="dropdown-item" routerLink="/admin/retrieve" >Recuperaciones</a>
+        </div>
       </li>
+
+
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" 
         aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-alt"> {{username}}</i>
+        <i class="fas fa-user-alt"> </i> {{username}}
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-default">
         <a  class="dropdown-item" routerLink="/perfil">Perfil</a>
