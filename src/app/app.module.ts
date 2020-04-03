@@ -24,6 +24,8 @@ import { ChangePasswordDialogComponent } from './_components/_dialogs/change-pas
 import { GroupComponent } from './_components/admin-panel/group/group.component';
 import { AbsenceComponent } from './_components/admin-panel/user_group/absence/absence.component';
 import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
+import { AddComponent } from './_components/admin-panel/group/add/add.component';
+import { EditComponent } from './_components/admin-panel/group/edit/edit.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve
     ChangePasswordDialogComponent,
     GroupComponent,
     AbsenceComponent,
-    RetrieveComponent
+    RetrieveComponent,
+    AddComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

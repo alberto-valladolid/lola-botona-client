@@ -18,4 +18,8 @@ export class GroupService {
     return this.http.get(adminApiUrl + '/groups', { responseType: 'json' });
   }
 
+  deleteGroup(id : string){
+    return this.http.delete( adminApiUrl + '/groups/' + id, { responseType: 'json' }); 
+  }
+
 }

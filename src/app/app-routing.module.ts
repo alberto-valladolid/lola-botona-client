@@ -9,6 +9,8 @@ import { AdminPanelComponent } from './_components/admin-panel/user/admin-panel.
 import { AddUserComponent } from './_components/admin-panel/user/add-user/add-user.component';
 import { EditUserComponent } from './_components/admin-panel/user/edit-user/edit-user.component';
 import { GroupComponent } from './_components/admin-panel/group/group.component';
+import { AddComponent } from './_components/admin-panel/group/add/add.component';
+import { EditComponent } from './_components/admin-panel/group/edit/edit.component';
 import { AbsenceComponent } from './_components/admin-panel/user_group/absence/absence.component';
 import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
 
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate:[AuthGuard]},
   { path: 'admin/user', component: AdminPanelComponent, canActivate:[AuthGuard]},
   { path: 'admin/group', component: GroupComponent, canActivate:[AuthGuard]},
+  { path: 'admin/group/add', component: AddComponent, canActivate:[AuthGuard]},
+  { path: 'admin/group/edit/:id', component: EditComponent, canActivate:[AuthGuard]},
   { path: 'admin/absence', component: AbsenceComponent, canActivate:[AuthGuard]},
   { path: 'admin/retrieve', component: RetrieveComponent, canActivate:[AuthGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 

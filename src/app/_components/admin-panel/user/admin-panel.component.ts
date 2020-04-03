@@ -110,10 +110,13 @@ export class AdminPanelComponent implements OnInit {
   }
 
   deleteUser(id:string, user: string,tlf:string): void {
+
+    var text  = "¿Desea eliminar el usuario con el nombre " + user + " y el teléfono "+ tlf + "?";
+
     const dialogRef = this.matDialog.open(DialogComponent, {
       height: '',
       width: '',
-      data: {user: user,tlf:tlf}
+      data: {text:text}
     });
 
     dialogRef.afterClosed().subscribe(result => {
