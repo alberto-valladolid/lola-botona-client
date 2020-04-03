@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr [ngSwitch]="group.dayOfWeek" *ngFor="let group of groups" class="text-center">   
+          <tr [ngSwitch]="group.dayofweek" *ngFor="let group of groups" class="text-center">   
 
       
               <td *ngSwitchCase="0">Lunes</td>
@@ -30,12 +30,12 @@
               <td *ngSwitchCase="5">Sabado</td>
               <td *ngSwitchCase="6">Domingo</td>
      
-            <td>{{group.timeOfDay}}</td>
+            <td>{{group.timeofday}}</td>
             <td>
               <div class="btn-group " role="group">
 
                 <button title="Editar" type="button" (click)="editGroup(group.id)" class="btn btn-dark"><i class="fas fa-edit"></i></button>
-                <button  title="Eliminar" type="button"  (click)="deleteGroup(group.id,group.dayOfWeek,group.timeOfDay)"  class="btn btn-danger"  ><i class="fas fa-trash-alt"></i></button>
+                <button  title="Eliminar" type="button"  (click)="deleteGroup(group.id,group.dayofweek,group.timeofday)"  class="btn btn-danger"  ><i class="fas fa-trash-alt"></i></button>
               </div>
             </td>
             <td>{{group.description}}</td>

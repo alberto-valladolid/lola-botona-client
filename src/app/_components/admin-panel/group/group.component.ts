@@ -74,7 +74,6 @@ export class GroupComponent implements OnInit {
           this.groups = data;
           this.chRef.detectChanges();
           this.dtTrigger.next();
-          //this.groups.stringDiaSemana = this.groups.dayOfWeek;
 
         },
         error => {

@@ -19,13 +19,14 @@ import { EditUserComponent } from './_components/admin-panel/user/edit-user/edit
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogComponent } from './_components/_dialogs/delete-user-dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 import { ProfileComponent } from './_components/profile/profile.component';
 import { ChangePasswordDialogComponent } from './_components/_dialogs/change-password-dialog/change-password-dialog.component';
 import { GroupComponent } from './_components/admin-panel/group/group.component';
 import { AbsenceComponent } from './_components/admin-panel/user_group/absence/absence.component';
 import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
-import { AddComponent } from './_components/admin-panel/group/add/add.component';
-import { EditComponent } from './_components/admin-panel/group/edit/edit.component';
+import { AddGroupComponent } from './_components/admin-panel/group/add-group/add-group.component';
+import { EditGroupComponent } from './_components/admin-panel/group/edit-group/edit-group.component';
 
 
 @NgModule({
@@ -43,8 +44,8 @@ import { EditComponent } from './_components/admin-panel/group/edit/edit.compone
     GroupComponent,
     AbsenceComponent,
     RetrieveComponent,
-    AddComponent,
-    EditComponent
+    AddGroupComponent,
+    EditGroupComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,8 @@ import { EditComponent } from './_components/admin-panel/group/edit/edit.compone
     HttpClientModule,
     DataTablesModule,
     NoopAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

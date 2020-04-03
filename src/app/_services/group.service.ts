@@ -22,4 +22,10 @@ export class GroupService {
     return this.http.delete( adminApiUrl + '/groups/' + id, { responseType: 'json' }); 
   }
 
+
+  addGroup(group: {id: any, capacity: number, description: string, active: boolean, dayofweek: number,    timeofday :string}){
+    return this.http.post(adminApiUrl + '/groups', group, { responseType: 'json' }); 
+  }
+
+  
 }
