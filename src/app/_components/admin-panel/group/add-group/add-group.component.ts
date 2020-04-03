@@ -2,7 +2,6 @@ import { Component, OnInit , HostBinding} from '@angular/core';
 import { GroupService } from '../../../../_services/group.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-add-group',
   templateUrl: './add-group.component.html',
@@ -14,18 +13,12 @@ export class AddGroupComponent implements OnInit {
 
   errorMsg = null; 
 
- 
-
   optionSelected: string;
   options: string[] = ["Si", "No"];
   
-  
   dayofweek : string; 
 
-
   timeofdayOptions: string[] = ["Mañana", "Tarde"];
-
-
 
   group  = {
 
@@ -38,10 +31,8 @@ export class AddGroupComponent implements OnInit {
     
   }; 
 
-
   constructor(private groupService: GroupService,private router: Router) { }
   
-
   ngOnInit(): void {
   }
 
@@ -54,20 +45,16 @@ export class AddGroupComponent implements OnInit {
     }
     this.group.dayofweek = Number(this.dayofweek); 
 
-    this.errorMsg = null;   
-     console.log(this.group); 
+    this.errorMsg = null;  
+
 
     this.groupService.addGroup(this.group).subscribe(
       res =>{
         this.router.navigate(['/admin/group']);
       },
       err =>{
-        console.log(err);
         this.errorMsg = err.error.message; 
       } 
     )
-
   }
-
-
 }

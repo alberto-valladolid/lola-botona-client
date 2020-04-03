@@ -1,1 +1,66 @@
-<p>edit-group works!</p>
+<div class="col-md-8 user-container marginAuto">
+    <h2 class="text-center">Editar grupo {{tittle}} </h2>
+    <form #form='ngForm' ngNativeValidate (ngSubmit)="onSubmit()"> 
+
+
+        <div class="form-group">
+            <label for="username">Día de la semana:</label>     
+            <select class="custom-select"  id="dayofweek" name="dayofweek" [(ngModel)]="group.dayofweek" class="form-control" required autofocus [value]="group.dayofweek" >     
+                <option value="0">Lunes</option>
+                <option value="1">Martes</option>
+                <option value="2">Miércoles</option>
+                <option value="3">Jueves</option>
+                <option value="4">Viernes</option>
+                <option value="5">Sábado</option>
+                <option value="6">Domingo</option>      
+            </select>
+
+            
+        </div> 
+
+        <div class="form-group">
+            <label for="capacity">Plazas:</label>
+            <input type="number"  placeholder="Plazas" id="capacity" name="capacity" [(ngModel)]="group.capacity" class="form-control" required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <input type="text"  placeholder="Descripción" id="description" name="description" [(ngModel)]="group.description"  class="form-control" required >
+        </div>
+        
+        <div class="form-group">
+            <label id="example-radio-group-label">Turno: </label>
+            <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            [(ngModel)]="group.timeofday"
+            name="turno">
+            <mat-radio-button class="example-radio-button" *ngFor="let timeofdayOption of timeofdayOptions" [value]="timeofdayOption" required>
+                {{timeofdayOption}}
+            </mat-radio-button>
+            </mat-radio-group>           
+        </div>
+
+        <div class="form-group">
+            <label id="example-radio-group-label">Activo: </label>
+            <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            [(ngModel)]="optionSelected" 
+            name="activo">
+            <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option" required>
+                {{option}}
+            </mat-radio-button>
+            </mat-radio-group>           
+        </div>
+
+
+        <div *ngIf="errorMsg" class="alert alert-danger">
+            {{errorMsg}}
+        </div>
+
+        <button class="btn btn-dark" type="submit" >Añadir</button>
+        <button class="btn btn-dark marginLeft20"  routerLink="/admin/group">Volver</button>
+        
+    </form>
+</div> 
