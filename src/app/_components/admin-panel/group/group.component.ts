@@ -118,32 +118,32 @@ export class GroupComponent implements OnInit {
 
 
     switch(diaSemana) { 
-      case 0: { 
+      case 2: { 
         diaSemanaString="lunes"; 
         break; 
       } 
-      case 1: { 
+      case 3: { 
         diaSemanaString="martes"; 
         break; 
       } 
-      case 2: { 
+      case 4: { 
         diaSemanaString="miércoles"; 
         break; 
       } 
-      case 3: { 
+      case 5: { 
         diaSemanaString="jueves"; 
         break; 
       } 
-      case 4: { 
+      case 6: { 
         diaSemanaString="viernes"; 
         break; 
       } 
-      case 5: { 
+      case 7: { 
         diaSemanaString="sábado"; 
         break; 
       } 
-      case 6: { 
-        diaSemanaString="doming"; 
+      case 1: { 
+        diaSemanaString="domingo"; 
         break; 
       } 
 

@@ -22,13 +22,13 @@
           <tr [ngSwitch]="group.dayofweek" *ngFor="let group of groups" class="text-center">   
 
       
-              <td *ngSwitchCase="0">Lunes</td>
-              <td *ngSwitchCase="1">Martes</td>
-              <td *ngSwitchCase="2">Miércoles</td>
-              <td *ngSwitchCase="3">Jueves</td>
-              <td *ngSwitchCase="4">Viernes</td>
-              <td *ngSwitchCase="5">Sabado</td>
-              <td *ngSwitchCase="6">Domingo</td>
+              <td *ngSwitchCase="2">Lunes</td>
+              <td *ngSwitchCase="3">Martes</td>
+              <td *ngSwitchCase="4">Miércoles</td>
+              <td *ngSwitchCase="5">Jueves</td>
+              <td *ngSwitchCase="6">Viernes</td>
+              <td *ngSwitchCase="7">Sabado</td>
+              <td *ngSwitchCase="1">Domingo</td>
      
             <td>{{group.timeofday}}</td>
             <td>

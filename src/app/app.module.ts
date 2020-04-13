@@ -27,6 +27,7 @@ import { AbsenceComponent } from './_components/admin-panel/user_group/absence/a
 import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
 import { AddGroupComponent } from './_components/admin-panel/group/add-group/add-group.component';
 import { EditGroupComponent } from './_components/admin-panel/group/edit-group/edit-group.component';
+import { CalendarComponent } from './_components/calendar/calendar.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { EditGroupComponent } from './_components/admin-panel/group/edit-group/e
     RetrieveComponent,
     AddGroupComponent,
     EditGroupComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,

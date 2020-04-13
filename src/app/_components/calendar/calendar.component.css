@@ -1,0 +1,104 @@
+@media (max-width:575px) {
+    .display-4 {
+        font-size: 1.5rem;
+    }
+    .day h5 {
+        background-color: #f8f9fa;
+        padding: 3px 5px 5px;
+        margin: -8px -8px 8px -8px;
+    }
+    .date {
+        padding-left: 4px;
+    }
+
+    .display-5{
+        font-size: 1.5rem !important;
+        padding-top: 6px;
+    }
+
+
+
+
+}
+
+
+
+.abrev{
+    display:none !important; 
+}
+
+
+@media (min-width: 576px) and (max-width:626px) {
+
+    .abrev{
+        display:flex !important; 
+    }
+    .non-abrev{
+        display:none !important; 
+    }
+
+}
+
+
+@media (min-width: 576px)   {
+    .day {
+        /* height: 14.2857vw; */
+        min-height:150px; 
+    }
+
+
+}
+
+
+
+.container-fluid{
+    max-width:1500px; 
+    padding:30px; 
+
+}
+
+.display-5{
+    font-size: 2.1rem;
+
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.left-col {
+    float: left;
+    width:10%;
+}
+.center-col {
+    float: left;
+    text-align: center;
+    width: 80%;
+}
+.right-col {
+    float: left;
+    text-align: right;
+    width: 10%;
+}
+
+
+.titleContainer{
+    height:auto; 
+}
+
+header{
+    padding-top: 30px;
+}
+
+.event{
+    /* min-height:46.5px;  */
+    min-height:51px;
+}
+
+.align-center{
+    text-align:center; 
+}
+
+.event-title {
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: 1.25rem;
+}

@@ -13,12 +13,14 @@ import { AddGroupComponent } from './_components/admin-panel/group/add-group/add
 import { EditGroupComponent } from './_components/admin-panel/group/edit-group/edit-group.component';
 import { AbsenceComponent } from './_components/admin-panel/user_group/absence/absence.component';
 import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
+import { CalendarComponent } from './_components/calendar/calendar.component';
+
 
 
 import{AuthGuard} from "./_guards/auth.guard"; 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: CalendarComponent },
   { path: 'perfil', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin/user/add', component: AddUserComponent, canActivate:[AuthGuard]},
