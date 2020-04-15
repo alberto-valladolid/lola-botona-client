@@ -116,7 +116,7 @@ export class AdminPanelComponent implements OnInit {
     const dialogRef = this.matDialog.open(DialogComponent, {
       height: '',
       width: '',
-      data: {text:text}
+      data: {text:text, successButtonString:"Eliminar"}
     });
 
     dialogRef.afterClosed().subscribe(result => {

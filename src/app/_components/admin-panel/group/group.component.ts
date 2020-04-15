@@ -85,7 +85,6 @@ export class GroupComponent implements OnInit {
   reRenderTable(){
     this.dtElement.dtInstance.then((dtInstance : DataTables.Api) =>  {
 
-      console.log("actaulziando tabla"); 
         // Destroy the table first in the current context
         dtInstance.destroy();
 
@@ -154,7 +153,7 @@ export class GroupComponent implements OnInit {
     const dialogRef = this.matDialog.open(DialogComponent, {
       height: '',
       width: '',
-      data: {text:text }
+      data: {text:text , successButtonString:"Eliminar" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
