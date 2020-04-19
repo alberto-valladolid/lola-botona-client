@@ -28,6 +28,7 @@ import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve
 import { AddGroupComponent } from './_components/admin-panel/group/add-group/add-group.component';
 import { EditGroupComponent } from './_components/admin-panel/group/edit-group/edit-group.component';
 import { CalendarComponent } from './_components/calendar/calendar.component';
+import { InfoDialogComponent } from './_components/_dialogs/info-dialog/info-dialog.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { CalendarComponent } from './_components/calendar/calendar.component';
     AddGroupComponent,
     EditGroupComponent,
     CalendarComponent,
+    InfoDialogComponent,
   ],
   imports: [
     BrowserModule,

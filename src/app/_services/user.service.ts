@@ -50,5 +50,10 @@ export class UserService {
  
   }
  
+  getPendingRetrieves() : Observable<any>{
+    return this.http.get(requestUrl + '/users/pending-retrieves',  { responseType: 'json' }); 
+ 
+  }
+
 
 }

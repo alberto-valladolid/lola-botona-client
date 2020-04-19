@@ -17,8 +17,12 @@ export class CalendarService {
 
 
   getCalendarData(): Observable<any> {
-    return this.http.get(requestUrl + '/calendardata', { responseType: 'json' });
+    return this.http.get(requestUrl + '/calendar/calendardata', { responseType: 'json' });
   }
 
+  createRetrieve(date: { newPassword: any } , groupid:number) : Observable<any>{
+    return this.http.post(requestUrl + '/calendar/createRetrieve',   {date:date, groupid:groupid }  , { responseType: 'json' }); 
+
+  }
   
 }

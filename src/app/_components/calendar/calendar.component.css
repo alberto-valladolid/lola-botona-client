@@ -54,6 +54,7 @@
 .container-fluid{
     max-width:1500px; 
     padding:30px; 
+    padding-bottom:100px; 
 
 }
 
@@ -101,4 +102,42 @@ header{
     font-weight: 500;
     line-height: 1.2;
     font-size: 1.25rem;
+}
+
+.not-cur-month{
+    /* border: 1px solid #a5a2a2!important; */
+    background-color: #d4d4d4!important;
+}
+
+.day{
+    opacity: 0.8;
+    
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently*/
+
+}
+
+.hidden{
+    visibility: hidden; 
+}
+
+.cursor-pointer{
+    cursor:pointer; 
+}
+
+.cursor-not-allowed{
+    cursor:not-allowed; 
+    
+}
+
+
+
+.text-truncate-custom {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
