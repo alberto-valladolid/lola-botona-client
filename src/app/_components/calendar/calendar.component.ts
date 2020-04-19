@@ -16,7 +16,7 @@ export class CalendarComponent implements OnInit {
 
   date:string; 
   month = ["Enero", "Febrero", "Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-
+  currentDate; 
   days; 
   
 
@@ -24,9 +24,11 @@ export class CalendarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    var currentDate = new Date();    
-    this.date =  "" + this.month[currentDate.getMonth()] +" "+ currentDate.getFullYear(); 
+    this.currentDate = new Date();    
+    this.date =  "" + this.month[this.currentDate.getMonth()] +" "+ this.currentDate.getFullYear(); 
     
+   
+
     this.calendarService.getCalendarData()
       .subscribe(
         data => {
@@ -70,16 +72,26 @@ export class CalendarComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-      
-        // this.groupService.deleteGroup(id).subscribe(
-        //   res =>{
-        //     console.log(res); 
+       
+        this.calendarService.createAbsence(date, idGroup ).subscribe(
+          res =>{
 
-        //     this.reRenderTable();
-        //   },
-        //   err => console.log(err)
-        // )
+            console.log(res.message);
+            this.reRenderCalendar();
+          },
+          err => {
 
+            var text  = err.error.message;
+            this.matDialog.open(InfoDialogComponent, {
+              height: '',
+              width: '',
+              data: {text:text , button:"Aceptar" }
+            });
+
+            console.log(err); 
+
+          }
+        )
       }
     });
 
@@ -107,7 +119,6 @@ export class CalendarComponent implements OnInit {
             dialogRef.afterClosed().subscribe(result => {
               if(result){
 
-                console.log("fecha"+date);
                 this.calendarService.createRetrieve(date, idGroup ).subscribe(
                   res =>{
 
@@ -117,7 +128,7 @@ export class CalendarComponent implements OnInit {
                   err => {
 
                     var text  = err.error.message;
-                    const dialogRef = this.matDialog.open(InfoDialogComponent, {
+                    this.matDialog.open(InfoDialogComponent, {
                       height: '',
                       width: '',
                       data: {text:text , button:"Aceptar" }

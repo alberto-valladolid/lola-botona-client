@@ -24,5 +24,10 @@ export class CalendarService {
     return this.http.post(requestUrl + '/calendar/createRetrieve',   {date:date, groupid:groupid }  , { responseType: 'json' }); 
 
   }
+
+  createAbsence(date: { newPassword: any } , groupid:number) : Observable<any>{
+    return this.http.post(requestUrl + '/calendar/createAbsence',   {date:date, groupid:groupid }  , { responseType: 'json' }); 
+
+  }
   
 }

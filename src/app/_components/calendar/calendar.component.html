@@ -64,7 +64,10 @@
 
               
           
-              <ng-container *ngIf="day.currentMonth">
+              <ng-container *ngIf="day.currentMonth && currentDate.getDate() <= day.monthDay ">
+
+
+                
 
                 <!-- Morning events -->
                 <ng-container *ngIf="!day.firstEvent.groupExist ; else elseBlockMorning">
