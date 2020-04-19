@@ -32,7 +32,7 @@
       </div>
 
     </header>
-    <div class="row border border-right-0 border-bottom-0">
+    <div class="row border border-right-0 border-bottom-0 days-container">
 
 
         
@@ -43,71 +43,72 @@
 
           <div  [ngClass]="{ 'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth}">
 
-
-            <h5 class="row align-items-center">
-              <span class="date col-1">{{day.monthDay}}</span>
-              <container-element [ngSwitch]="day.weekDay">
-                <!-- the same view can be shown in more than one case -->
-                <small *ngSwitchCase="1" class="col d-sm-none text-center text-muted">Lunes</small>
-                <small *ngSwitchCase="2" class="col d-sm-none text-center text-muted">Martes</small>
-                <small *ngSwitchCase="3" class="col d-sm-none text-center text-muted">Miércoles</small>
-                <small *ngSwitchCase="4" class="col d-sm-none text-center text-muted">Jueves</small>
-                <small *ngSwitchCase="5" class="col d-sm-none text-center text-muted">Viernes</small>
-                <small *ngSwitchCase="6" class="col d-sm-none text-center text-muted">Sábado</small>
-                <small *ngSwitchCase="7" class="col d-sm-none text-center text-muted">Domingo</small>
-
-              </container-element>
-
-              <span class="col-1"></span>
-            </h5>
-
-
-            <ng-container *ngIf="day.currentMonth">
-
-              <!-- Morning events -->
-              <ng-container *ngIf="!day.firstEvent.groupExist ; else elseBlockMorning">
-                
-                <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white hidden"  ><div class="event-title" > Mañana  {{day.firstEvent.description}} </div>  <div class="align-center event-description"></div></a>
-              </ng-container>
-              <ng-template #elseBlockMorning>              
-                <ng-container *ngIf="day.firstEvent.userAssits ; else elseBlockMorning">
-                  <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')" ><div class="" >  <span class="event-title"> Mañana </span> ({{day.firstEvent.description}}) </div>  <div class="align-center event-description">Generar ausencia</div></a>
-
-                </ng-container>
-                
-                <ng-template #elseBlockMorning>
-                  <ng-container *ngIf="!day.firstEvent.full">
-                    <a title="Generar asistencia puntual" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer " (click)="createRetrieve(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')"  ><div class="" >  <span class="event-title"> Mañana </span> ({{day.firstEvent.description}}) </div>  <div class="align-center event-description">Generar asistencia puntual</div></a>
-                  </ng-container>
-                  <ng-container *ngIf="day.firstEvent.full">
-                    <a title="Grupo completo" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  ><div class="" >  <span class="event-title"> Mañana </span> ({{day.firstEvent.description}}) </div>  <div class="align-center event-description">Grupo completo</div></a>
-                  </ng-container>
-                </ng-template>                
-              </ng-template>
-
-              <!-- Afternoon events -->
-              <ng-container *ngIf="!day.secondEvent.groupExist ; else elseBlockAfternoon">
-                <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white hidden"  ><div class="event-title" > Tarde  {{day.secondEvent.description}} </div>  <div class="align-center event-description"></div></a>
-              </ng-container>
-              <ng-template #elseBlockAfternoon>                
-                <ng-container *ngIf="day.secondEvent.userAssits ; else elseBlockAfternoon">
-                  <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.groupId.timeOfDay, 'Mañana')" ><div class="" >  <span class="event-title"> Tarde </span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Generar ausencia</div></a>
-                </ng-container>
-                <ng-template #elseBlockAfternoon>
-                  <ng-container *ngIf="!day.secondEvent.full">
-                    <a title="Generar asistencia puntual" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer " (click)="createRetrieve(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"  ><div class="" >  <span class="event-title"> Tarde</span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Generar asistencia puntual</div></a>
-                  </ng-container>
-                  <ng-container *ngIf="day.secondEvent.full">
-                    <a title="Grupo completo" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  ><div class="" >  <span class="event-title"> Tarde </span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Grupo completo</div></a>
-                  </ng-container>
-                </ng-template>                
-              </ng-template>
-
-
      
+            <div class="event-container">
+              <h5 class="row align-items-center">
+                <span class="date col-1">{{day.monthDay}}</span>
+                <container-element [ngSwitch]="day.weekDay">
+                  <!-- the same view can be shown in more than one case -->
+                  <small *ngSwitchCase="1" class="col d-sm-none text-center text-muted">Lunes</small>
+                  <small *ngSwitchCase="2" class="col d-sm-none text-center text-muted">Martes</small>
+                  <small *ngSwitchCase="3" class="col d-sm-none text-center text-muted">Miércoles</small>
+                  <small *ngSwitchCase="4" class="col d-sm-none text-center text-muted">Jueves</small>
+                  <small *ngSwitchCase="5" class="col d-sm-none text-center text-muted">Viernes</small>
+                  <small *ngSwitchCase="6" class="col d-sm-none text-center text-muted">Sábado</small>
+                  <small *ngSwitchCase="7" class="col d-sm-none text-center text-muted">Domingo</small>
+  
+                </container-element>
+  
+                <span class="col-1"></span>
+              </h5>
 
-            </ng-container>
+              
+          
+              <ng-container *ngIf="day.currentMonth">
 
+                <!-- Morning events -->
+                <ng-container *ngIf="!day.firstEvent.groupExist ; else elseBlockMorning">
+                  
+                  <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white hidden"  ><div class="event-title" > Mañana  {{day.firstEvent.description}} </div>  <div class="align-center event-description"></div></a>
+                </ng-container>
+                <ng-template #elseBlockMorning>              
+                  <ng-container *ngIf="day.firstEvent.userAssits ; else elseBlockMorning">
+                    <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')" ><div class="" >  <span class="event-title"> Mañana </span> ({{day.firstEvent.description}}) </div>  <div class="align-center event-description">Generar ausencia</div></a>
+
+                  </ng-container>
+                  
+                  <ng-template #elseBlockMorning>
+                    <ng-container *ngIf="!day.firstEvent.full">
+                      <a title="Generar asistencia puntual" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer " (click)="createRetrieve(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')"  ><div class="" >  <span class="event-title"> Mañana </span> ({{day.firstEvent.description}}) </div>  <div class="align-center event-description">Generar asistencia puntual</div></a>
+                    </ng-container>
+                    <ng-container *ngIf="day.firstEvent.full">
+                      <a title="Grupo completo" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  ><div class="" >  <span class="event-title"> Mañana </span> ({{day.firstEvent.description}}) </div>  <div class="align-center event-description">Grupo completo</div></a>
+                    </ng-container>
+                  </ng-template>                
+                </ng-template>
+
+                <!-- Afternoon events -->
+                <ng-container *ngIf="!day.secondEvent.groupExist ; else elseBlockAfternoon">
+                  <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white hidden"  ><div class="event-title" > Tarde  {{day.secondEvent.description}} </div>  <div class="align-center event-description"></div></a>
+                </ng-container>
+                <ng-template #elseBlockAfternoon>                
+                  <ng-container *ngIf="day.secondEvent.userAssits ; else elseBlockAfternoon">
+                    <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.groupId.timeOfDay, 'Mañana')" ><div class="" >  <span class="event-title"> Tarde </span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Generar ausencia</div></a>
+                  </ng-container>
+                  <ng-template #elseBlockAfternoon>
+                    <ng-container *ngIf="!day.secondEvent.full">
+                      <a title="Generar asistencia puntual" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-success  cursor-pointer " (click)="createRetrieve(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"  ><div class="" >  <span class="event-title"> Tarde</span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Generar asistencia puntual</div></a>
+                    </ng-container>
+                    <ng-container *ngIf="day.secondEvent.full">
+                      <a title="Grupo completo" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-danger  cursor-not-allowed"  ><div class="" >  <span class="event-title"> Tarde </span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Grupo completo</div></a>
+                    </ng-container>
+                  </ng-template>                
+                </ng-template>
+
+              </ng-container>
+
+
+            </div>
 
 
             <!-- <a *ngIf="day.currentMonth"    [ngClass]="{ 'event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small  text-white' : true ,'hidden' : !day.secondEvent.groupExist, 'bg-secondary cursor-pointer' : day.secondEvent.userAssits,'bg-danger' : day.secondEvent.full,'bg-success cursor-pointer' : !day.secondEvent.full && !day.secondEvent.userAssits }"        title="Test Event 3"><div class="event-title" > Tarde </div>  <div class="align-center event-description">{{day.secondEvent.description}}</div></a> -->

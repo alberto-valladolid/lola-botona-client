@@ -141,3 +141,19 @@ header{
     text-overflow: ellipsis;
     white-space: normal;
 }
+
+
+/* .days-container{
+    grid-auto-rows: 1fr;
+} */
+
+.event-container{
+   height:100%; 
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+.afternoon-event{
+    margin-top: auto;
+}
