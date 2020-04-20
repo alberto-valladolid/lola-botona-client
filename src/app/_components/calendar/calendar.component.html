@@ -41,7 +41,7 @@
   
 
 
-          <div  [ngClass]="{ 'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth}">
+          <div  [ngClass]="{ 'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()}">
 
      
             <div class="event-container">
@@ -96,7 +96,7 @@
                 </ng-container>
                 <ng-template #elseBlockAfternoon>                
                   <ng-container *ngIf="day.secondEvent.userAssits ; else elseBlockAfternoon">
-                    <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.groupId.timeOfDay, 'Mañana')" ><div class="" >  <span class="event-title"> Tarde </span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Generar ausencia</div></a>
+                    <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Mañana')" ><div class="" >  <span class="event-title"> Tarde </span> ({{day.secondEvent.description}}) </div>  <div class="align-center event-description">Generar ausencia</div></a>
                   </ng-container>
                   <ng-template #elseBlockAfternoon>
                     <ng-container *ngIf="!day.secondEvent.full">

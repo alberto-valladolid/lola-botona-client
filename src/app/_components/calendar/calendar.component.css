@@ -157,3 +157,7 @@ header{
 .afternoon-event{
     margin-top: auto;
 }
+
+.current-day{
+    background-color:powderblue; 
+}
