@@ -12,7 +12,6 @@ export class NavComponent implements OnInit {
   private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
-  showModeratorBoard = false;
   username: string;
 
   constructor(private tokenStorageService: TokenStorageService) { }

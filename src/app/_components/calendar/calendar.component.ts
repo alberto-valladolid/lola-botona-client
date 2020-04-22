@@ -4,7 +4,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../_dialogs/delete-user-dialog/dialog.component';
 import { InfoDialogComponent } from '../_dialogs/info-dialog/info-dialog.component';
-
+import { TokenStorageService } from '../../_services/token-storage.service';
 
 @Component({
   selector: 'app-calendar',
@@ -13,6 +13,10 @@ import { InfoDialogComponent } from '../_dialogs/info-dialog/info-dialog.compone
 })
 export class CalendarComponent implements OnInit {
 
+  
+  private roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
 
   date:string; 
   month = ["Enero", "Febrero", "Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
@@ -20,15 +24,23 @@ export class CalendarComponent implements OnInit {
   days; 
   
 
-  constructor(private calendarService: CalendarService,private userService: UserService,private matDialog: MatDialog) { }
+  constructor(private calendarService: CalendarService,private userService: UserService,private matDialog: MatDialog,private tokenStorageService: TokenStorageService) { }
 
 
   ngOnInit(): void {
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+
+    }
+
     this.currentDate = new Date();    
     this.date =  "" + this.month[this.currentDate.getMonth()] +" "+ this.currentDate.getFullYear(); 
-    
-   
-
     this.calendarService.getCalendarData()
       .subscribe(
         data => {
@@ -63,7 +75,7 @@ export class CalendarComponent implements OnInit {
   //SIN TERMINAR
   createAbsence(idGroup:number, dayOfMonth: number,date:any, timeOfDay : string ){
 
-    var text  = "¿Desea ausentarse el día "+dayOfMonth + " de " +this.date+" por la "+ timeOfDay + "?";
+    var text  = "¿Desea faltar el día "+dayOfMonth + " de " +this.date+" por la "+ timeOfDay + "?";
     const dialogRef = this.matDialog.open(DialogComponent, {
       height: '',
       width: '',
@@ -109,7 +121,7 @@ export class CalendarComponent implements OnInit {
 
 
             
-            var text  = "¿Desea asistir el día "+dayOfMonth + " de " +this.date+" por la "+ timeOfDay + "?";
+            var text  = "¿Desea recuperar el día "+dayOfMonth + " de " +this.date+" por la "+ timeOfDay + "?";
             const dialogRef = this.matDialog.open(DialogComponent, {
               height: '',
               width: '',
