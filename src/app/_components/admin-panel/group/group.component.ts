@@ -146,7 +146,7 @@ export class GroupComponent implements OnInit {
         break; 
       } 
 
-   } 
+    } 
 
 
     var text  = "¿Desea eliminar el grupo del " + diaSemanaString + " - "+ turno + "?";
@@ -154,7 +154,7 @@ export class GroupComponent implements OnInit {
       height: '',
       width: '',
       data: {text:text , successButtonString:"Eliminar" }
-    });
+  });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){

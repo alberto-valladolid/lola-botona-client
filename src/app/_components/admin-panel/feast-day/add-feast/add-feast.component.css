@@ -1,0 +1,30 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+  
+  }
+  
+  /* .example-radio-button {
+    margin: 5px;
+  } */
+
+  .marginAuto {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.marginLeft20{
+    margin-left: 20px; 
+}
+
+.row {
+
+    margin-right: 0px !important ;
+   margin-left: 0px !important; 
+}
+
+.align-center{
+  text-align:center; 
+}
+
