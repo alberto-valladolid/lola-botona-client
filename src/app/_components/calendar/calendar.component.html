@@ -115,7 +115,7 @@
                 </ng-container>
                 <ng-template #elseBlockAfternoon>                
                   <ng-container *ngIf="day.secondEvent.userAssits ; else elseBlockAfternoon">
-                    <a title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-primary cursor-pointer "   (click)="day.feastDay  ? showFeastAlert() : createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"  >
+                    <a title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-info cursor-pointer "   (click)="day.feastDay  ? showFeastAlert() : createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"  >
                       <div class="" >  
                         <span class="event-title"> Tarde </span>
                         ({{day.secondEvent.description}}) 
