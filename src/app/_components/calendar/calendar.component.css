@@ -158,6 +158,16 @@ header{
     margin-top: auto;
 }
 
+
+
+.feast-day a{
+    background-color: #6c757d!important; 
+}
+
+.feast-day {
+    background-color: #d4d4d4!important; 
+}
+
 .current-day{
-    background-color:powderblue; 
+    background-color:powderblue !important; 
 }

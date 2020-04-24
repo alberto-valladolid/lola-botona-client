@@ -117,10 +117,7 @@ export class CalendarComponent implements OnInit {
       .subscribe(
         data => {
 
-          if(data.count > 0){
-
-
-            
+          if(data.count > 0){            
             var text  = "¿Desea recuperar el día "+dayOfMonth + " de " +this.date+" por la "+ timeOfDay + "?";
             const dialogRef = this.matDialog.open(DialogComponent, {
               height: '',
@@ -150,13 +147,9 @@ export class CalendarComponent implements OnInit {
 
                   }
                 )
-
               }
             });
-
-
           }else{
-
             var text  = "No tienes clases pendientes";
             const dialogRef = this.matDialog.open(InfoDialogComponent, {
               height: '',
@@ -164,15 +157,24 @@ export class CalendarComponent implements OnInit {
               data: {text:text , button:"Aceptar" }
             });
           }
-
         },
         error => {
           console.log(error);
-          
     });
 
+  }
+
+  showFeastAlert(){
+
+    var text  = "No es posible modificar clases en días festivos."
+    this.matDialog.open(InfoDialogComponent, {
+      height: '',
+      width: '',
+      data: {text:text , button:"Aceptar" }
+    });
 
   }
+
 
   
 }

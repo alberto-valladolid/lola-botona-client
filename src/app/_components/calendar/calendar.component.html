@@ -41,12 +41,14 @@
   
 
 
-          <div  [ngClass]="{ 'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()}">
+          <div  [ngClass]="{ 'feast-day' : day.feastDay ,'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()}" title="{{ day.feastDay ? 'FESTIVO' : '' }}">
 
      
-            <div class="event-container">
+            <div   [ngClass]="{ 'event-container' : true }" >
               <h5 class="row align-items-center">
-                <span class="date col-1">{{day.monthDay}}</span>
+                <span class="date col-1">{{day.monthDay}}
+                   <!-- <span *ngIf="day.feastDay">FESTIVO</span> -->
+                </span>
                 <container-element [ngSwitch]="day.weekDay">
                   <!-- the same view can be shown in more than one case -->
                   <small *ngSwitchCase="1" class="col d-sm-none text-center text-muted">Lunes</small>
@@ -73,7 +75,7 @@
                 </ng-container>
                 <ng-template #elseBlockMorning>              
                   <ng-container *ngIf="day.firstEvent.userAssits ; else elseBlockMorning">
-                    <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')" >
+                    <a  title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-info cursor-pointer "     (click)="day.feastDay  ? showFeastAlert()  : createAbsence(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')"   >
                       <div class="" >  
                         <span class="event-title"> Mañana </span>
                         ({{day.firstEvent.description}}) 
@@ -85,7 +87,7 @@
                   
                   <ng-template #elseBlockMorning>
                     <ng-container *ngIf="!day.firstEvent.full">
-                      <a title="Generar asistencia puntual" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer " (click)="createRetrieve(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')"  >
+                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer "    (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')"          >
                         <div class="" > 
                           <span class="event-title">Mañana </span> 
                           ({{day.firstEvent.description}}) 
@@ -95,7 +97,7 @@
                       </a>
                     </ng-container>
                     <ng-container *ngIf="day.firstEvent.full">
-                      <a title="Grupo completo" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  >
+                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Grupo completo' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  >
                         <div class="" >  
                           <span class="event-title"> Mañana </span>
                           ({{day.firstEvent.description}}) 
@@ -113,7 +115,7 @@
                 </ng-container>
                 <ng-template #elseBlockAfternoon>                
                   <ng-container *ngIf="day.secondEvent.userAssits ; else elseBlockAfternoon">
-                    <a title="Generar ausencia" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-secondary cursor-pointer "  (click)="createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Mañana')" >
+                    <a title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-primary cursor-pointer "   (click)="day.feastDay  ? showFeastAlert() : createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"  >
                       <div class="" >  
                         <span class="event-title"> Tarde </span>
                         ({{day.secondEvent.description}}) 
@@ -124,7 +126,7 @@
                   </ng-container>
                   <ng-template #elseBlockAfternoon>
                     <ng-container *ngIf="!day.secondEvent.full">
-                      <a title="Generar asistencia puntual" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-success  cursor-pointer " (click)="createRetrieve(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"  >
+                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-success  cursor-pointer "  (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"         >
                         <div class="" >  
                           <span class="event-title"> Tarde</span> 
                           ({{day.secondEvent.description}}) 
@@ -134,7 +136,7 @@
                       </a>
                     </ng-container>
                     <ng-container *ngIf="day.secondEvent.full">
-                      <a title="Grupo completo" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-danger  cursor-not-allowed"  >
+                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Grupo completo' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-danger  cursor-not-allowed"  >
                         <div class="" >  
                           <span class="event-title"> Tarde </span> 
                           ({{day.secondEvent.description}}) 
