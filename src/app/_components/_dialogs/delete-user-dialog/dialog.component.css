@@ -1,3 +1,15 @@
 .btn-eliminar{
-    margin-left: auto;
+    margin-left: auto !important;
+}
+
+.btn-dark{
+    color: #fff !important;
+    background-color: #23272b !important;
+    border-color: #1d2124 !important;
+}
+
+.btn-dark {
+    color: #fff !important;
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
 }
