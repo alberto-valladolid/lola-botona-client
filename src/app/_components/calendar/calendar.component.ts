@@ -73,9 +73,9 @@ export class CalendarComponent implements OnInit {
   }
 
   //SIN TERMINAR
-  createAbsence(idGroup:number, dayOfMonth: number,date:any, timeOfDay : string ){
+  createAbsence(idGroup:number, dayOfMonth: number,date:any, desc : string ){
 
-    var text  = "¿Desea faltar el día "+dayOfMonth + " de " +this.date+" por la "+ timeOfDay + "?";
+    var text  = "¿Desea anular la clase "+ desc + " del "+dayOfMonth + " de " +this.date+ "?";
     const dialogRef = this.matDialog.open(DialogComponent, {
       height: '',
       width: '',
@@ -118,7 +118,7 @@ export class CalendarComponent implements OnInit {
         data => {
 
           if(data.count > 0){            
-            var text  = "¿Desea recuperar el día "+dayOfMonth + " de " +this.date+" por la "+ timeOfDay + "?";
+            var text  = "¿Desea recuperar una falta en la clase " +this.date+ " del día "+dayOfMonth + " de " +this.date+" ?";
             const dialogRef = this.matDialog.open(DialogComponent, {
               height: '',
               width: '',

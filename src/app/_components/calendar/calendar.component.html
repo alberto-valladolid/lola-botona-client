@@ -1,6 +1,5 @@
 <div class="container-fluid ">
-
-
+  
     <div class="titleContainer clearfix">
   
         <h2 class="text-center">Calendario</h2>
@@ -33,12 +32,10 @@
 
     </header>
     <div class="row border border-right-0 border-bottom-0 days-container">
-
-
         
         <ng-container  *ngFor="let day of days; let i=index" >
 
-  
+          <!-- día {{day.monthDay}} -->
 
 
           <div  [ngClass]="{ 'feast-day' : day.feastDay ,'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()}" title="{{ day.feastDay ? 'FESTIVO' : '' }}">
@@ -64,103 +61,58 @@
                 <span class="col-1"></span>
               </h5>
 
-              
-          
               <ng-container *ngIf="day.currentMonth && currentDate.getDate() <= day.monthDay ">
+             
+                <ng-container *ngIf="day.events != null">
+                 
+                  <ng-container  *ngFor="let event of day.events" >
+                    
+                    <ng-container *ngIf="event.userAssits ; else elseBlockMorning">
+                      <a  title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-info cursor-pointer "     (click)="day.feastDay  ? showFeastAlert()  : createAbsence(event.groupId, day.monthDay, event.timeOfDay, event.description)"   >
+                        <div class="" >  
+                          <span class="event-title"> {{event.description}} </span>
+                          
+                          <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                        </div>  
+                        <div class="align-center event-description">Anular clase</div>
+                      </a>
+                    </ng-container>
+                    
+                    <ng-template #elseBlockMorning>
+                      <ng-container *ngIf="!event.full">
+                        <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer "    (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(event.groupId, day.monthDay, event.timeOfDay, event.description)"          >
+                          <div class="" > 
+                            <span class="event-title"> {{event.description}} </span> 
+                            
+                            <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                          </div>  
+                          <div class="align-center event-description">Recuperar clase</div>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="event.full">
+                        <a title="{{ day.feastDay ? 'FESTIVO' : 'Grupo completo' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  >
+                          <div class="" >  
+                            <span class="event-title"> {{event.description}} </span>
+                        
+                            <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                          </div>  
+                          <div class="align-center event-description">Grupo completo</div>
+                        </a>
+                      </ng-container>
+                    </ng-template>  
 
-                <!-- Morning events -->
-                <ng-container *ngIf="!day.firstEvent.groupExist ; else elseBlockMorning">
-                  
-                  <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white hidden"  ><div class="event-title" > Mañana  {{day.firstEvent.description}}  </div>  <div class="align-center event-description"></div></a>
-                </ng-container>
-                <ng-template #elseBlockMorning>              
-                  <ng-container *ngIf="day.firstEvent.userAssits ; else elseBlockMorning">
-                    <a  title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-info cursor-pointer "     (click)="day.feastDay  ? showFeastAlert()  : createAbsence(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')"   >
-                      <div class="" >  
-                        <span class="event-title"> Mañana </span>
-                        ({{day.firstEvent.description}}) 
-                        <span *ngIf="showAdminBoard" > {{day.firstEvent.users}} </span>
-                      </div>  
-                      <div class="align-center event-description">Anular clase</div>
-                    </a>
+
                   </ng-container>
-                  
-                  <ng-template #elseBlockMorning>
-                    <ng-container *ngIf="!day.firstEvent.full">
-                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer "    (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(day.firstEvent.groupId, day.monthDay, day.firstEvent.timeOfDay, 'Mañana')"          >
-                        <div class="" > 
-                          <span class="event-title">Mañana </span> 
-                          ({{day.firstEvent.description}}) 
-                          <span *ngIf="showAdminBoard" > {{day.firstEvent.users}} </span>
-                        </div>  
-                        <div class="align-center event-description">Recuperar clase</div>
-                      </a>
-                    </ng-container>
-                    <ng-container *ngIf="day.firstEvent.full">
-                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Grupo completo' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  >
-                        <div class="" >  
-                          <span class="event-title"> Mañana </span>
-                          ({{day.firstEvent.description}}) 
-                          <span *ngIf="showAdminBoard" > {{day.firstEvent.users}} </span>
-                        </div>  
-                        <div class="align-center event-description">Grupo completo</div>
-                      </a>
-                    </ng-container>
-                  </ng-template>                
-                </ng-template>
 
-                <!-- Afternoon events -->
-                <ng-container *ngIf="!day.secondEvent.groupExist ; else elseBlockAfternoon">
-                  <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white hidden"  ><div class="event-title" > Tarde  {{day.secondEvent.description}} </div>  <div class="align-center event-description"></div></a>
                 </ng-container>
-                <ng-template #elseBlockAfternoon>                
-                  <ng-container *ngIf="day.secondEvent.userAssits ; else elseBlockAfternoon">
-                    <a title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded  text-truncate-custom small afternoon-event  text-white bg-info cursor-pointer "   (click)="day.feastDay  ? showFeastAlert() : createAbsence(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"  >
-                      <div class="" >  
-                        <span class="event-title"> Tarde </span>
-                        ({{day.secondEvent.description}}) 
-                        <span *ngIf="showAdminBoard" > {{day.secondEvent.users}} </span>
-                      </div>  
-                      <div class="align-center event-description">Anular clase</div>
-                    </a>
-                  </ng-container>
-                  <ng-template #elseBlockAfternoon>
-                    <ng-container *ngIf="!day.secondEvent.full">
-                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-success  cursor-pointer "  (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(day.secondEvent.groupId, day.monthDay, day.secondEvent.timeOfDay, 'Tarde')"         >
-                        <div class="" >  
-                          <span class="event-title"> Tarde</span> 
-                          ({{day.secondEvent.description}}) 
-                          <span *ngIf="showAdminBoard" > {{day.secondEvent.users}} </span>
-                        </div>  
-                        <div class="align-center event-description">Recuperar clase</div>
-                      </a>
-                    </ng-container>
-                    <ng-container *ngIf="day.secondEvent.full">
-                      <a title="{{ day.feastDay ? 'FESTIVO' : 'Grupo completo' }}" class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small afternoon-event  text-white bg-danger  cursor-not-allowed"  >
-                        <div class="" >  
-                          <span class="event-title"> Tarde </span> 
-                          ({{day.secondEvent.description}}) 
-                          <span *ngIf="showAdminBoard" > {{day.secondEvent.users}} </span>
-                        </div>  
-                        <div class="align-center event-description">Grupo completo</div>
-                      </a>
-                    </ng-container>
-                  </ng-template>                
-                </ng-template>
-
+            
               </ng-container>
-
 
             </div>
 
-
             <!-- <a *ngIf="day.currentMonth"    [ngClass]="{ 'event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small  text-white' : true ,'hidden' : !day.secondEvent.groupExist, 'bg-secondary cursor-pointer' : day.secondEvent.userAssits,'bg-danger' : day.secondEvent.full,'bg-success cursor-pointer' : !day.secondEvent.full && !day.secondEvent.userAssits }"        title="Test Event 3"><div class="event-title" > Tarde </div>  <div class="align-center event-description">{{day.secondEvent.description}}</div></a> -->
 
-
-
-
-
-            <!-- <a *ngIf="day.currentMonth"  class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-success text-white" title="Test Event 2"><div class="event-title" > Mañana </div>  <div class="align-center event-description">{{day.firstEvent.description}}</div></a>
+            <!-- <a *ngIf="day.currentMonth"  class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-success text-white" title="Test Event 2"><div class="event-title" > Mañana </div>  <div class="align-center event-description">{{event.description}}</div></a>
             <a *ngIf="day.currentMonth" class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-danger text-white" title="Test Event 3"><div class="event-title" > Tarde </div>  <div class="align-center event-description">{{day.secondEvent.description}}</div></a>
      -->
           </div>
