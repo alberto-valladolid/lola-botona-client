@@ -41,9 +41,10 @@ export class GroupComponent implements OnInit {
       language: {
         "decimal":        "",
         "emptyTable":     "La tabla está vacía",
-        "info":           "Mostrando de _START_ a _END_ de _TOTAL_  registros",
+        "info":           "Mostrando de _START_ a _END_ de _TOTAL_  registros",    
         "infoEmpty":      "Mostrando 0 de 0 registros",
-        "infoFiltered":   "(Registros totales  _MAX_ )",
+        // "infoFiltered":   "(Registros totales  _MAX_ )",
+        "infoFiltered":   "",
         "infoPostFix":    "",
         "thousands":      ",",
         "lengthMenu":     "Registros por página _MENU_ ",

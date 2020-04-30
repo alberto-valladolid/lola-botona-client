@@ -34,11 +34,11 @@
     <div class="row border border-right-0 border-bottom-0 days-container">
         
         <ng-container  *ngFor="let day of days; let i=index" >
+          <!-- <ng-container  *ngFor="1" > -->
+        
 
-          <!-- día {{day.monthDay}} -->
 
-
-          <div  [ngClass]="{ 'feast-day' : day.feastDay ,'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()}" title="{{ day.feastDay ? 'FESTIVO' : '' }}">
+          <div  [ngClass]="{ 'feast-day' : day.feastDay ,'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()  && day.currentMonth}" title="{{ day.feastDay ? 'FESTIVO' : '' }}">
 
      
             <div   [ngClass]="{ 'event-container' : true }" >
@@ -58,11 +58,11 @@
   
                 </container-element>
   
-                <span class="col-1"></span>
+                <span class="col-1"></span> 
               </h5>
 
-              <ng-container *ngIf="day.currentMonth && currentDate.getDate() <= day.monthDay ">
-             
+              <!-- <ng-container *ngIf="day.currentMonth && currentDate.getDate() <= day.monthDay "> -->
+              <ng-container *ngIf="1">
                 <ng-container *ngIf="day.events != null">
                  
                   <ng-container  *ngFor="let event of day.events" >

@@ -10,8 +10,8 @@
         <thead class="text-center thead-dark">
           <tr>
             <th>Día</th>
-            <th>Horario</th>
             <th>Opciones</th>
+            <th>Orden</th>            
             <th>Descripción</th>
             <th>Plazas</th>
             <th>Activo</th>
@@ -29,15 +29,15 @@
               <td *ngSwitchCase="6">Viernes</td>
               <td *ngSwitchCase="7">Sabado</td>
               <td *ngSwitchCase="1">Domingo</td>
-     
-            <td>{{group.timeofday}}</td>
+              
             <td>
               <div class="btn-group " role="group">
-
                 <button title="Editar" type="button" (click)="editGroup(group.id)" class="btn btn-dark"><i class="fas fa-edit"></i></button>
                 <button  title="Eliminar" type="button"  (click)="deleteGroup(group.id,group.dayofweek,group.timeofday)"  class="btn btn-danger"  ><i class="fas fa-trash-alt"></i></button>
               </div>
             </td>
+            <td>{{group.showorder}}</td>
+ 
             <td>{{group.description}}</td>
             <td>{{group.capacity }}</td>
             <td>{{group.active}}</td>

@@ -18,7 +18,7 @@ export class EditGroupComponent implements OnInit {
   //for radio buttons
   optionSelected: string;
   options: string[] = ["Si", "No"];  
-  timeofdayOptions: string[] = ["Mañana", "Tarde"];
+
 
   //for tittle
   dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sabado","Domingo"];
@@ -31,7 +31,7 @@ export class EditGroupComponent implements OnInit {
     description : "",
     active:false,
     dayofweek : null,    
-    timeofday  : ""    
+    showorder  : ""    
   }; 
 
 
@@ -49,7 +49,7 @@ export class EditGroupComponent implements OnInit {
         this.group.description = res.description; 
         this.group.active = res.active; 
         this.group.dayofweek = res.dayofweek; 
-        this.group.timeofday = res.timeofday; 
+        this.group.showorder = res.showorder; 
 
         if(res.active){
           this.optionSelected = "Si"; 
@@ -57,7 +57,7 @@ export class EditGroupComponent implements OnInit {
           this.optionSelected = "No"; 
         }
 
-        this.tittle = this.dias[this.group.dayofweek] + " - "+ this.group.timeofday ;
+        this.tittle = this.dias[this.group.dayofweek] + " - "+ this.group.showorder ;
 
       },
       err => console.log(err)

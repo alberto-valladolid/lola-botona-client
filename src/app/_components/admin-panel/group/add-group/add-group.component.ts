@@ -18,7 +18,7 @@ export class AddGroupComponent implements OnInit {
   
   dayofweek : string; 
 
-  timeofdayOptions: string[] = ["Mañana", "Tarde"];
+
 
   group  = {
 
@@ -27,7 +27,7 @@ export class AddGroupComponent implements OnInit {
     description : "",
     active:false,
     dayofweek : null,    
-    timeofday  : ""
+    showorder  : ""  
     
   }; 
 

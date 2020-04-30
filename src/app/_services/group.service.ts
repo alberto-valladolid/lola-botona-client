@@ -23,11 +23,11 @@ export class GroupService {
   }
 
 
-  addGroup(group: {id: any, capacity: number, description: string, active: boolean, dayofweek: number,    timeofday :string}){
+  addGroup(group: {id: any, capacity: number, description: string, active: boolean, dayofweek: number,    showorder :string}){
     return this.http.post(adminApiUrl + '/groups', group, { responseType: 'json' }); 
   }
 
-  editGroup(group: {id: any, capacity: number, description: string, active: boolean, dayofweek: number,    timeofday :string}){
+  editGroup(group: {id: any, capacity: number, description: string, active: boolean, dayofweek: number,    showorder :string}){
     return this.http.put(adminApiUrl + '/groups/' + group.id, group, { responseType: 'json' }); 
   }
 
