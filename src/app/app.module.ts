@@ -77,6 +77,7 @@ import { CalendarComponent } from './_components/calendar/calendar.component';
 import { InfoDialogComponent } from './_components/_dialogs/info-dialog/info-dialog.component';
 import { FeastDayComponent } from './_components/admin-panel/feast-day/feast-day.component';
 import { AddFeastComponent } from './_components/admin-panel/feast-day/add-feast/add-feast.component';
+import { AppConfigComponent } from './_components/admin-panel/app-config/app-config.component';
 
 
 
@@ -103,6 +104,7 @@ import { AddFeastComponent } from './_components/admin-panel/feast-day/add-feast
     InfoDialogComponent,
     FeastDayComponent,
     AddFeastComponent,
+    AppConfigComponent,
   ],
 
   imports: [

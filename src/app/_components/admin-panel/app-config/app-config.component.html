@@ -1,0 +1,25 @@
+<div class="col-md-8 app-config-container marginAuto">
+  <h2 class="text-center">Configuración de la aplicación </h2>
+  <form #form='ngForm' class="align-center" ngNativeValidate (ngSubmit)="onSubmit()"> 
+
+      <div class="form-group">
+        <label for="absenceDays">Días para recuperar una clase :</label>
+        <input type="number"  placeholder="Días" id="absenceDays" name="absenceDays" [(ngModel)]="appConfig.absenceDays" class="form-control" required >
+      </div>
+
+      <div class="form-group">
+          <label for="eventMinutes">Bloquear eventos cuando vayan a comenzar en menos de ( minutos):  </label>
+          <input type="number"  placeholder="Minutos" id="eventMinutes" name="eventMinutes" [(ngModel)]="appConfig.eventMinutes" class="form-control" required >
+      </div>
+
+      <div *ngIf="errorMsg" class="alert alert-danger">
+        {{errorMsg}}
+      </div>
+
+      <div *ngIf="succesMsg" class="alert alert-success">
+        {{succesMsg}}
+      </div>
+      <button class="btn btn-dark" type="submit" >Guardar</button>
+      
+  </form>
+</div> 

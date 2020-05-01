@@ -16,7 +16,7 @@ import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve
 import { FeastDayComponent } from './_components/admin-panel/feast-day/feast-day.component';
 import { CalendarComponent } from './_components/calendar/calendar.component';
 import { AddFeastComponent } from './_components/admin-panel/feast-day/add-feast/add-feast.component';
-
+import { AppConfigComponent } from './_components/admin-panel/app-config/app-config.component';
 
 
 import{AuthGuard} from "./_guards/auth.guard"; 
@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate:[AuthGuard]},
   { path: 'admin/user', component: AdminPanelComponent, canActivate:[AuthGuard]},
   { path: 'admin/group', component: GroupComponent, canActivate:[AuthGuard]},
+  { path: 'admin/app-config', component: AppConfigComponent, canActivate:[AuthGuard]},
   { path: 'admin/group/add', component: AddGroupComponent, canActivate:[AuthGuard]},
   { path: 'admin/group/edit/:id', component: EditGroupComponent, canActivate:[AuthGuard]},
   { path: 'admin/feast-day', component: FeastDayComponent, canActivate:[AuthGuard]},
