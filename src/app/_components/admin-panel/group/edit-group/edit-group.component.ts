@@ -31,7 +31,9 @@ export class EditGroupComponent implements OnInit {
     description : "",
     active:false,
     dayofweek : null,    
-    showorder  : ""    
+    showorder  : ""  ,
+    startTimeHours:null,
+    startTimeMins:null
   }; 
 
 
@@ -50,6 +52,10 @@ export class EditGroupComponent implements OnInit {
         this.group.active = res.active; 
         this.group.dayofweek = res.dayofweek; 
         this.group.showorder = res.showorder; 
+        this.group.startTimeHours = res.startTime.substring(0,2); 
+        this.group.startTimeMins = res.startTime.substring(3,5); 
+
+        console.log(this.group.startTimeMins); 
 
         if(res.active){
           this.optionSelected = "Si"; 

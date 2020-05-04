@@ -19,3 +19,22 @@
     margin-right: 0px !important ;
    margin-left: 0px !important; 
 }
+
+.start-time label{
+    display:block !important;
+}
+
+.start-time *{
+    display:inline-block;
+
+}
+
+.start-time input{
+   width:48%; 
+    
+}
+
+.start-time span{
+    width:4%; 
+     text-align:center; 
+ }

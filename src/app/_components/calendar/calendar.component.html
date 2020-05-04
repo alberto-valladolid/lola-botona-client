@@ -62,51 +62,111 @@
               </h5>
 
               <!-- <ng-container *ngIf="day.currentMonth && currentDate.getDate() <= day.monthDay "> -->
-              <ng-container *ngIf="1">
+
+                
+              
                 <ng-container *ngIf="day.events != null">
                  
                   <ng-container  *ngFor="let event of day.events" >
-                    
-                    <ng-container *ngIf="event.userAssits ; else elseBlockMorning">
-                      <a  title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-info cursor-pointer "     (click)="day.feastDay  ? showFeastAlert()  : createAbsence(event.groupId, day.monthDay, event.timeOfDay, event.description)"   >
-                        <div class="" >  
-                          <span class="event-title"> {{event.description}} </span>
-                          
-                          <span *ngIf="showAdminBoard" > {{event.users}} </span>
-                        </div>  
-                        <div class="align-center event-description">Anular clase</div>
-                      </a>
-                    </ng-container>
-                    
-                    <ng-template #elseBlockMorning>
-                      <ng-container *ngIf="!event.full">
-                        <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer "    (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(event.groupId, day.monthDay, event.timeOfDay, event.description)"          >
-                          <div class="" > 
-                            <span class="event-title"> {{event.description}} </span> 
+ 
+                    <!-- Se comprueba si la fecha actual es anterior a la fecha del evento -  X minutos -->
+                    <ng-container *ngIf="checkIfCurrentDateIsLowerthanDateSubtracted(event.startAt) ; else elseBlockTimeOutEvent">
+
+                      <ng-container *ngIf="event.userAssits ; else elseBlockNoAssist">
+                        <a  title="{{ day.feastDay ? 'FESTIVO' : 'Anular clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-info cursor-pointer "     (click)="day.feastDay  ? showFeastAlert()  : createAbsence(event.groupId, day.monthDay, event.timeOfDay, event.description)"   >
+                          <div class="" >  
+                            <span class="event-title"> {{event.description}} </span>
                             
                             <span *ngIf="showAdminBoard" > {{event.users}} </span>
                           </div>  
-                          <div class="align-center event-description">Recuperar clase</div>
+                          <div class="align-center event-description">Anular clase</div>
                         </a>
                       </ng-container>
-                      <ng-container *ngIf="event.full">
-                        <a title="{{ day.feastDay ? 'FESTIVO' : 'Grupo completo' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  >
+                      
+                      <ng-template #elseBlockNoAssist>
+                        <ng-container *ngIf="!event.full">
+                          <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer "    (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(event.groupId, day.monthDay, event.timeOfDay, event.description)"          >
+                            <div class="" > 
+                              <span class="event-title"> {{event.description}} </span> 
+                              
+                              <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                            </div>  
+                            <div class="align-center event-description">Recuperar clase</div>
+                          </a>
+                        </ng-container>
+                        <ng-container *ngIf="event.full">
+                          <a title="{{ day.feastDay ? 'FESTIVO' : 'Grupo completo' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-danger  cursor-not-allowed"  >
+                            <div class="" >  
+                              <span class="event-title"> {{event.description}} </span>
+                          
+                              <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                            </div>  
+                            <div class="align-center event-description">Grupo completo</div>
+                          </a>
+                        </ng-container>
+                      </ng-template>  
+                    </ng-container>
+
+
+                    <ng-template #elseBlockTimeOutEvent>
+                      <ng-container *ngIf="event.userAssits ; else elseBlockNoAssist2">
+                        <a    class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-secondary cursor-default "     (click)="timeOutEventAlert()"   >
                           <div class="" >  
                             <span class="event-title"> {{event.description}} </span>
-                        
+                            
                             <span *ngIf="showAdminBoard" > {{event.users}} </span>
                           </div>  
-                          <div class="align-center event-description">Grupo completo</div>
+                          <div class="align-center event-description">Anular clase</div>
                         </a>
                       </ng-container>
-                    </ng-template>  
+                      
+                      <ng-template #elseBlockNoAssist2>
+
+                        <ng-container *ngIf="!event.full">
+
+                          <!-- Se comprueba si la fecha actual es posterior a la del evento -->
+                          <ng-container *ngIf="checkIfCurrentDateIsGreaterThanDate(event.startAt)  ; else elseBlockMinsLeftToStart">
+                       
+                            <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-secondary  cursor-default "    (click)="timeOutEventAlert()"          >
+                              <div class="" > 
+                                <span class="event-title"> {{event.description}} </span>                                 
+                                <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                              </div>  
+                              <div class="align-center event-description">Recuperar clase</div>
+                            </a>
+                          </ng-container>
+
+                          <ng-template #elseBlockMinsLeftToStart>
+                            <a title="{{ day.feastDay ? 'FESTIVO' : 'Recuperar clase' }}"  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-success  cursor-pointer "    (click)="day.feastDay  ? showFeastAlert()  : createRetrieve(event.groupId, day.monthDay, event.timeOfDay, event.description)"          >
+                              <div class="" > 
+                                <span class="event-title"> {{event.description}} </span>                                 
+                                <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                              </div>  
+                              <div class="align-center event-description">Recuperar clase</div>
+                            </a>
+                          </ng-template>
+
+                        </ng-container>
+                        <ng-container *ngIf="event.full">
+                          <a  class = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate-custom small  text-white bg-secondary  cursor-not-allowed"  >
+                            <div class="" >  
+                              <span class="event-title"> {{event.description}} </span>                          
+                              <span *ngIf="showAdminBoard" > {{event.users}} </span>
+                            </div>  
+                            <div class="align-center event-description">Grupo completo</div>
+                          </a>
+                        </ng-container>
 
 
+                      </ng-template>  
+
+
+                    </ng-template> 
                   </ng-container>
 
                 </ng-container>
             
-              </ng-container>
+          
 
             </div>
 

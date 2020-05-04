@@ -20,14 +20,17 @@ export class CalendarComponent implements OnInit {
 
   date:string; 
   month = ["Enero", "Febrero", "Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-  currentDate; 
+  currentDate: Date; 
   days; 
-  
+  minsEditEvents;
+  pendingRecieveCount; 
 
   constructor(private calendarService: CalendarService,private userService: UserService,private matDialog: MatDialog,private tokenStorageService: TokenStorageService) { }
 
 
   ngOnInit(): void {
+
+    console.log(new Date(Date.parse("2020-04-30T23:13:00.000+0000")).toString())
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
@@ -39,13 +42,16 @@ export class CalendarComponent implements OnInit {
 
     }
 
-    this.currentDate = new Date();    
+    this.currentDate = new Date(); 
+
     this.date =  "" + this.month[this.currentDate.getMonth()] +" "+ this.currentDate.getFullYear(); 
     this.calendarService.getCalendarData()
       .subscribe(
         data => {
-          this.days = data;
-          console.log(this.days);
+          this.days = data.days;
+          this.minsEditEvents = data.minsEditEvents;
+          this.pendingRecieveCount = data.dataPendingRecieveCount;  
+          //console.log(data);
 
         },
         error => {
@@ -61,7 +67,9 @@ export class CalendarComponent implements OnInit {
     this.calendarService.getCalendarData()
       .subscribe(
         data => {
-          this.days = data;
+          this.days = data.days;
+          this.minsEditEvents = data.minsEditEvents;
+          this.pendingRecieveCount = data.dataPendingRecieveCount;  
           console.log(this.days);
 
         },
@@ -175,6 +183,41 @@ export class CalendarComponent implements OnInit {
 
   }
 
+  timeOutEventAlert(){
+
+    var text  = "La clase ya ha comenzado o faltan menos de " + this.minsEditEvents + " minutos para que comience";
+    this.matDialog.open(InfoDialogComponent, {
+      height: '',
+      width: '',
+      data: {text:text , button:"Aceptar" }
+    });
+
+  }
+
+  checkIfCurrentDateIsGreaterThanDate(eventStartAt:string){
+
+    var eventDate : Date = new Date(Date.parse(eventStartAt));   
+
+    if(this.currentDate > eventDate){
+      return 1;
+    }else{
+      return 0; 
+    }  
+
+  }
+
+  checkIfCurrentDateIsLowerthanDateSubtracted(eventStartAt:string){
+
+    var eventDate : Date = new Date(Date.parse(eventStartAt));   
+    eventDate.setTime(eventDate.getTime() - this.minsEditEvents*60000);
+
+    if( this.currentDate < eventDate){
+      return 1;
+    }else{
+      return 0; 
+    }    
+
+  }
 
   
 }

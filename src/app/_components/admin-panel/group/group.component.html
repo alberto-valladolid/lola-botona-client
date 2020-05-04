@@ -11,7 +11,8 @@
           <tr>
             <th>Día</th>
             <th>Opciones</th>
-            <th>Orden</th>            
+            <th>Orden</th>     
+            <th>Hora de inicio</th>    
             <th>Descripción</th>
             <th>Plazas</th>
             <th>Activo</th>
@@ -37,7 +38,7 @@
               </div>
             </td>
             <td>{{group.showorder}}</td>
- 
+            <td>{{group.startTime | slice:0:5 }}</td>
             <td>{{group.description}}</td>
             <td>{{group.capacity }}</td>
             <td>{{group.active}}</td>

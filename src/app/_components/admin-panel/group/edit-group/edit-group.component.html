@@ -23,14 +23,21 @@
             <input type="number"  placeholder="Plazas" id="capacity" name="capacity" [(ngModel)]="group.capacity" class="form-control" required autofocus>
         </div>
 
+        <div class="form-group start-time">
+            <label for="startTimeHours">Hora de inicio:</label>
+            <input type="number" min="0" max="23"  placeholder="Hora" id="startTimeHours" name="startTimeHours" [(ngModel)]="group.startTimeHours" class="form-control" required autofocus>
+            <span>:</span>
+            <input type="number" min="0" max="59" placeholder="Minutos" id="startTimeMins" name="startTimeMins" [(ngModel)]="group.startTimeMins" class="form-control" required autofocus>
+        </div>
+
         <div class="form-group">
-            <label for="description">Descripción:</label>
+            <label for="description">Descripción (título que aparece en el calendario):</label>
             <input type="text"  placeholder="Descripción" id="description" name="description" [(ngModel)]="group.description"  class="form-control" required >
         </div>
         
         <div class="form-group">
             <label id="example-radio-group-label">Orden que se visualiza: </label>
-            <input type="number"  placeholder="Descripción" id="showorder" name="showorder" [(ngModel)]="group.showorder"  class="form-control" required > 
+            <input type="number" min="1" max="59" placeholder="Descripción" id="showorder" name="showorder" [(ngModel)]="group.showorder"  class="form-control" required > 
         </div>
 
         <div class="form-group">

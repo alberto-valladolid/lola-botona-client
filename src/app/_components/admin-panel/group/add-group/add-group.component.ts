@@ -27,7 +27,9 @@ export class AddGroupComponent implements OnInit {
     description : "",
     active:false,
     dayofweek : null,    
-    showorder  : ""  
+    showorder  : "" ,
+    startTimeHours:null,
+    startTimeMins:null
     
   }; 
 
