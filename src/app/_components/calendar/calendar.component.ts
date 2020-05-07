@@ -19,7 +19,8 @@ export class CalendarComponent implements OnInit {
   showAdminBoard = false;
 
   date:string; 
-  month = ["Enero", "Febrero", "Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  monthNumber;  //0 para el actual, -1 para el anterior etc. 
+  month = ["Enero", "Febrero", "Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","Enero"];
   currentDate: Date; 
   days; 
   minsEditEvents;
@@ -30,7 +31,7 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(new Date(Date.parse("2020-04-30T23:13:00.000+0000")).toString())
+    this.monthNumber = 0; 
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
@@ -45,7 +46,7 @@ export class CalendarComponent implements OnInit {
     this.currentDate = new Date(); 
 
     this.date =  "" + this.month[this.currentDate.getMonth()] +" "+ this.currentDate.getFullYear(); 
-    this.calendarService.getCalendarData()
+    this.calendarService.getCalendarData(this.monthNumber)
       .subscribe(
         data => {
           this.days = data.days;
@@ -64,7 +65,7 @@ export class CalendarComponent implements OnInit {
 
   reRenderCalendar(){
 
-    this.calendarService.getCalendarData()
+    this.calendarService.getCalendarData(this.monthNumber)
       .subscribe(
         data => {
           this.days = data.days;
@@ -80,7 +81,49 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  //SIN TERMINAR
+
+
+  previousMonth(){
+  
+
+    
+    this.monthNumber --; 
+
+    var nexMonthDate = new Date();
+
+    nexMonthDate.setMonth(nexMonthDate.getMonth() + this.monthNumber); 
+
+    if(nexMonthDate.getDate() != this.currentDate.getDate()) nexMonthDate.setDate(0);
+
+
+    this.date =  " " + this.month[nexMonthDate.getMonth()] +" "+ nexMonthDate.getFullYear(); 
+
+
+    
+
+    this.days = null; 
+    this.reRenderCalendar();
+
+  }
+
+  nextMonth(){
+
+    this.monthNumber ++; 
+
+    var nexMonthDate = new Date();
+
+    nexMonthDate.setMonth(nexMonthDate.getMonth() + this.monthNumber); 
+
+    if(nexMonthDate.getDate() != this.currentDate.getDate()) nexMonthDate.setDate(0);
+
+
+    this.date =  " " + this.month[nexMonthDate.getMonth()] +" "+ nexMonthDate.getFullYear(); 
+
+    this.days = null; 
+    this.reRenderCalendar();
+
+  }
+
   createAbsence(idGroup:number, dayOfMonth: number,date:any, desc : string ){
 
     var text  = "¿Desea anular la clase "+ desc + " del "+dayOfMonth + " de " +this.date+ "?";
@@ -218,6 +261,8 @@ export class CalendarComponent implements OnInit {
     }    
 
   }
+
+
 
   
 }

@@ -16,8 +16,14 @@ export class CalendarService {
   constructor(private http: HttpClient) { }
 
 
-  getCalendarData(): Observable<any> {
-    return this.http.get(requestUrl + '/calendar/calendardata', { responseType: 'json' });
+  getCalendarData(monthNumber:number): Observable<any> {
+    return this.http.get(requestUrl + '/calendar/calendardata', {params: {
+      requestMonth: monthNumber.toString(),
+          
+    },responseType: 'json' });
+
+
+    //return this.http.get(adminApiUrl + '/calendar/calendardata/' + monthNumber, { responseType: 'json' }); 
   }
 
   createRetrieve(date: { newPassword: any } , groupid:number) : Observable<any>{
