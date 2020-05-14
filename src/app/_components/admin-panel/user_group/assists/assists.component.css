@@ -1,0 +1,151 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+  
+  }
+  
+  /* .example-radio-button {
+    margin: 5px;
+  } */
+
+  .marginAuto {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.marginLeft20{
+    margin-left: 20px; 
+}
+
+.row {
+
+    margin-right: 0px !important ;
+   margin-left: 0px !important; 
+}
+
+.align-center{
+  text-align:center; 
+}
+
+.datepicker-desde{
+    margin-right: 30px;
+}
+
+.form-input{
+  width:100% !important; 
+}
+
+
+
+
+.tableContainer{
+  margin: 30px 30px ;
+}
+
+h3{
+  text-align:center; 
+  margin:50px 0px; 
+}
+
+table tbody tr td:not(:last-child) {
+  padding: 15px 10px !important; 
+}
+
+/* thead tr th::before , thead tr th::after{
+  content: "";
+} */
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,.page-item.active .page-link {
+  background-color: #343a40 !important; 
+/* W3C */ }
+
+
+.page-item.active .page-link{
+  background-color: #343a40 !important; 
+}
+
+.add-user{
+  height:32px; 
+  padding: 0px 10px;
+}
+
+.buttonContainer{
+  margin-left: 15px;
+}
+
+.container-fluid{
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+
+
+@media screen and (max-width: 767px){
+
+  .container-fluid{
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  
+  .buttonContainer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .add-user{
+      margin-bottom:20px; 
+  }
+
+  h3{      
+      margin:30px 0px; 
+  }
+  
+  .add-user{
+      height:38px;  
+  }
+
+
+
+  .tableContainer{
+      margin: 30px -15px;
+  }    
+
+  .componentContainer{
+      margin-left:  20px;
+      margin-right:  20px;
+  }
+
+  .add-button{
+    height: 25px;
+    margin-top: 7px;
+    padding:0px 20px; 
+  }
+
+
+}
+
+.buttons-container{
+  padding-bottom: 1.25em;
+  border-top: .84375em solid transparent;
+}
+
+.buttons-container button{
+  width:calc(50% - 10px); 
+  height: 25px;
+  margin-top: 7px;
+  padding:0px; 
+}
+
+.buscar{
+  float:left; 
+  margin-right:20px; 
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100% !important;
+}
+

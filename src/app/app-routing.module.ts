@@ -11,8 +11,8 @@ import { EditUserComponent } from './_components/admin-panel/user/edit-user/edit
 import { GroupComponent } from './_components/admin-panel/group/group.component';
 import { AddGroupComponent } from './_components/admin-panel/group/add-group/add-group.component';
 import { EditGroupComponent } from './_components/admin-panel/group/edit-group/edit-group.component';
-import { AbsenceComponent } from './_components/admin-panel/user_group/absence/absence.component';
-import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
+import { AssistsComponent }  from './_components/admin-panel/user_group/assists/assists.component';
+
 import { FeastDayComponent } from './_components/admin-panel/feast-day/feast-day.component';
 import { CalendarComponent } from './_components/calendar/calendar.component';
 import { AddFeastComponent } from './_components/admin-panel/feast-day/add-feast/add-feast.component';
@@ -34,8 +34,7 @@ const routes: Routes = [
   { path: 'admin/group/edit/:id', component: EditGroupComponent, canActivate:[AuthGuard]},
   { path: 'admin/feast-day', component: FeastDayComponent, canActivate:[AuthGuard]},
   { path: 'admin/feast-day/add', component: AddFeastComponent, canActivate:[AuthGuard]},
-  { path: 'admin/absence', component: AbsenceComponent, canActivate:[AuthGuard]},
-  { path: 'admin/retrieve', component: RetrieveComponent, canActivate:[AuthGuard]},
+  { path: 'admin/event', component: AssistsComponent, canActivate:[AuthGuard]},  
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
   { path: '**', redirectTo: '404-pagina-no-encontrada',  pathMatch: 'full' },
   { path: '404-pagina-no-encontrada', component: PageNotFoundComponent },

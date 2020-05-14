@@ -69,8 +69,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import { ProfileComponent } from './_components/profile/profile.component';
 import { ChangePasswordDialogComponent } from './_components/_dialogs/change-password-dialog/change-password-dialog.component';
 import { GroupComponent } from './_components/admin-panel/group/group.component';
-import { AbsenceComponent } from './_components/admin-panel/user_group/absence/absence.component';
-import { RetrieveComponent } from './_components/admin-panel/user_group/retrieve/retrieve.component';
+
 import { AddGroupComponent } from './_components/admin-panel/group/add-group/add-group.component';
 import { EditGroupComponent } from './_components/admin-panel/group/edit-group/edit-group.component';
 import { CalendarComponent } from './_components/calendar/calendar.component';
@@ -78,6 +77,7 @@ import { InfoDialogComponent } from './_components/_dialogs/info-dialog/info-dia
 import { FeastDayComponent } from './_components/admin-panel/feast-day/feast-day.component';
 import { AddFeastComponent } from './_components/admin-panel/feast-day/add-feast/add-feast.component';
 import { AppConfigComponent } from './_components/admin-panel/app-config/app-config.component';
+import { AssistsComponent } from './_components/admin-panel/user_group/assists/assists.component';
 
 
 
@@ -96,8 +96,6 @@ import { AppConfigComponent } from './_components/admin-panel/app-config/app-con
     ProfileComponent,
     ChangePasswordDialogComponent,
     GroupComponent,
-    AbsenceComponent,
-    RetrieveComponent,
     AddGroupComponent,
     EditGroupComponent,
     CalendarComponent,
@@ -105,6 +103,7 @@ import { AppConfigComponent } from './_components/admin-panel/app-config/app-con
     FeastDayComponent,
     AddFeastComponent,
     AppConfigComponent,
+    AssistsComponent,
   ],
 
   imports: [

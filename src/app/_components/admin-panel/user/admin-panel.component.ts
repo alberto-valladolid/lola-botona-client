@@ -83,7 +83,7 @@ export class AdminPanelComponent implements OnInit {
   reRenderTable(){
         this.dtElement.dtInstance.then((dtInstance : DataTables.Api) =>  {
 
-          console.log("actaulziando tabla"); 
+
             // Destroy the table first in the current context
             dtInstance.destroy();
 
