@@ -25,11 +25,15 @@ export class AssistService {
       toDate: sorters.toDate,          
     },responseType: 'json' });
 
+  }
 
-    // groupId: sorters.groupId.toString(),
-    // userId: sorters.userId.toString(),
-    // type: sorters.type.value,
-    //return this.http.get(adminApiUrl + '/calendar/calendardata/' + monthNumber, { responseType: 'json' }); 
+  addAssist(group: {id: any,  date: string,  userId: any, groupId: any}){
+    return this.http.post(adminApiUrl + '/events', group, { responseType: 'json' }); 
+  }
+
+
+  deleteUserGroup(id : string){
+    return this.http.delete( adminApiUrl + '/events/' + id, { responseType: 'json' }); 
   }
 
 }

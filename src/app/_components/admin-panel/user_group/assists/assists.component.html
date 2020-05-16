@@ -95,31 +95,31 @@
             </tr>
           </thead>
           <tbody>
-            <tr  *ngFor="let group of userGroups" class="text-center">   
+            <tr  *ngFor="let userGroup of userGroups" class="text-center">   
 
 
 
               <!-- <td>{{group.type}}</td> -->
-              <td>{{userGroupTypes[group.type]}}</td>
+              <td>{{userGroupTypes[userGroup.type]}}</td>
 
               <td>
                 <div class="btn-group " role="group">
                   <!-- <button title="Editar" type="button" (click)="editGroup(group.id)" class="btn btn-dark"><i class="fas fa-edit"></i></button>
                   <button  title="Eliminar" type="button"  (click)="deleteGroup(group.id,group.dayofweek,group.timeofday)"  class="btn btn-danger"  ><i class="fas fa-trash-alt"></i></button> -->
-                  <button title="Editar" type="button"  class="btn btn-dark"><i class="fas fa-edit"></i></button>
-                  <button  title="Eliminar" type="button"    class="btn btn-danger"  ><i class="fas fa-trash-alt"></i></button>
+                  <!-- <button title="Editar" type="button"  class="btn btn-dark"><i class="fas fa-edit"></i></button> -->
+                  <button  title="Eliminar" type="button"    class="btn btn-danger"  (click)="deleteUserGroup(userGroup)" ><i class="fas fa-trash-alt"></i></button>
                 </div>
               </td>
-              <td >{{group.userString}}</td>            
-              <td>{{group.groupString}}</td>   
-              <td>{{group.dateat | slice:0:10 }}</td>
+              <td >{{userGroup.groupString}}</td>            
+              <td>{{userGroup.userString}}</td>   
+              <td>{{userGroup.dateat | slice:0:10 }}</td>
 
-              <ng-container *ngIf="group.type == 'absence'  ; else elseBlockNotAbsence">
-                <td *ngIf="group.retrieved">
+              <ng-container *ngIf="userGroup.type == 'absence'  ; else elseBlockNotAbsence">
+                <td *ngIf="userGroup.retrieved">
                   Si
                 </td>
 
-                <td *ngIf="!group.retrieved">
+                <td *ngIf="!userGroup.retrieved">
                   No
                 </td> 
               </ng-container>

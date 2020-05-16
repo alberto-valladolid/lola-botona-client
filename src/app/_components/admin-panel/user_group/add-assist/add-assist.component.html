@@ -1,0 +1,50 @@
+<div class="col-md-8 user-container marginAuto">
+    <h2 class="text-center">Añadir asistencia</h2>
+    <form #form='ngForm' ngNativeValidate (ngSubmit)="onSubmit()"> 
+
+
+        <div class="form-group">
+            <label for="type">Tipo:</label>
+            <select class="custom-select"  id="type" name="type" [(ngModel)]="assist.type" class="form-control" required autofocus >     
+            <option value="recurrent">Recurrente</option>
+            <option value="absence">Ausencia</option>
+            <option value="retrieve">Recuperación</option>
+      
+            </select>
+        </div> 
+
+ 
+        <div class="form-group">
+            <label for="userId">Usuario:</label>
+            <select class="custom-select"  id="userId" name="userId" [(ngModel)]="assist.userId" class="form-control" required autofocus >
+                <option *ngFor="let user of options.userIds" value="{{user.id}}">{{user.userString}}</option>
+            </select>
+        </div> 
+
+        <div class="form-group">
+            <label for="groupId">Grupo:</label>
+            <select class="custom-select"  id="groupId" name="groupId" [(ngModel)]="assist.groupId" class="form-control" required autofocus >
+                
+                <option *ngFor="let group of options.groupIds" value="{{group.id}}">{{group.groupString}}</option>
+            </select>
+        </div> 
+
+
+        <mat-form-field class="example-full-width">
+            <!-- <label for="date">Selecciona una fecha (únicamente en caso de ausencia o recuperación)</label> -->
+            <mat-label>Selecciona una fecha (únicamente en caso de ausencia o recuperación)</mat-label>
+            <input matInput id="date" class="date"  [matDatepicker]="picker"  [formControl]="options.date" disabled>
+            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker  startView="year" disabled="false" ></mat-datepicker>    
+        </mat-form-field>
+
+
+        <div *ngIf="errorMsg" class="alert alert-danger">
+            {{errorMsg}}
+        </div>
+
+        <button class="btn btn-dark" type="submit" >Añadir</button>
+        <button class="btn btn-dark marginLeft20"  routerLink="/admin/event">Volver</button>
+        
+    </form>
+</div> 

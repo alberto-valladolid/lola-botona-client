@@ -17,6 +17,8 @@ import { FeastDayComponent } from './_components/admin-panel/feast-day/feast-day
 import { CalendarComponent } from './_components/calendar/calendar.component';
 import { AddFeastComponent } from './_components/admin-panel/feast-day/add-feast/add-feast.component';
 import { AppConfigComponent } from './_components/admin-panel/app-config/app-config.component';
+import { AddAssistComponent } from './_components/admin-panel/user_group/add-assist/add-assist.component';
+
 
 
 import{AuthGuard} from "./_guards/auth.guard"; 
@@ -35,6 +37,7 @@ const routes: Routes = [
   { path: 'admin/feast-day', component: FeastDayComponent, canActivate:[AuthGuard]},
   { path: 'admin/feast-day/add', component: AddFeastComponent, canActivate:[AuthGuard]},
   { path: 'admin/event', component: AssistsComponent, canActivate:[AuthGuard]},  
+  { path: 'admin/event/add', component: AddAssistComponent, canActivate:[AuthGuard]},    
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
   { path: '**', redirectTo: '404-pagina-no-encontrada',  pathMatch: 'full' },
   { path: '404-pagina-no-encontrada', component: PageNotFoundComponent },

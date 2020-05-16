@@ -1,0 +1,49 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+  
+  }
+  
+  /* .example-radio-button {
+    margin: 5px;
+  } */
+
+  .marginAuto {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.marginLeft20{
+    margin-left: 20px; 
+}
+
+.row {
+
+    margin-right: 0px !important ;
+   margin-left: 0px !important; 
+}
+
+
+.start-time label{
+  display:block !important;
+}
+
+.start-time *{
+  display:inline-block;
+
+}
+
+.start-time input{
+ width:48%; 
+  
+}
+
+.start-time span{
+  width:4%; 
+   text-align:center; 
+}
+
+.example-full-width{
+  width:100%; 
+}

@@ -78,6 +78,8 @@ import { FeastDayComponent } from './_components/admin-panel/feast-day/feast-day
 import { AddFeastComponent } from './_components/admin-panel/feast-day/add-feast/add-feast.component';
 import { AppConfigComponent } from './_components/admin-panel/app-config/app-config.component';
 import { AssistsComponent } from './_components/admin-panel/user_group/assists/assists.component';
+import { AddAssistComponent } from './_components/admin-panel/user_group/add-assist/add-assist.component';
+
 
 
 
@@ -104,6 +106,8 @@ import { AssistsComponent } from './_components/admin-panel/user_group/assists/a
     AddFeastComponent,
     AppConfigComponent,
     AssistsComponent,
+    AddAssistComponent
+
   ],
 
   imports: [

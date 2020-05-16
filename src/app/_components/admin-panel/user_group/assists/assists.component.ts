@@ -7,7 +7,8 @@ import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { GroupService } from 'src/app/_services/group.service';
 import { UserService } from 'src/app/_services/user.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/_components/_dialogs/delete-user-dialog/dialog.component';
 
 
 
@@ -70,7 +71,7 @@ export class AssistsComponent implements OnInit {
   
 
 
-  constructor(private assistService: AssistService,private router: Router ,private chRef : ChangeDetectorRef,private groupService: GroupService,private userService: UserService) { }
+  constructor(private assistService: AssistService,private router: Router ,private chRef : ChangeDetectorRef,private groupService: GroupService,private userService: UserService,private matDialog: MatDialog) { }
 
 
 
@@ -234,7 +235,7 @@ export class AssistsComponent implements OnInit {
   }
 
   generateRow(){
-    
+    this.router.navigate(['admin/event/add']);
   }
 
   retrieveGroups(){
@@ -280,6 +281,42 @@ export class AssistsComponent implements OnInit {
         console.log(error);
         
     });
+  }
+
+  deleteUserGroup(userGroup){
+
+    console.log(userGroup); 
+
+    if(userGroup.type == "recurrent")
+      var text  = "¿Desea eliminar el registro del tipo '"+ this.userGroupTypes[userGroup.type] + "' para el usuario '" + userGroup.userString + "' y el grupo '" + userGroup.groupString + "' ?";
+    else
+      var text  = "¿Desea eliminar el registro del tipo '"+ this.userGroupTypes[userGroup.type] + "' para el usuario '" + userGroup.userString + "' ,  grupo '" + userGroup.groupString + "' y fecha '"+ userGroup.dateat.substr(0, 10) +"' ?";
+
+    const dialogRef = this.matDialog.open(DialogComponent, {
+      height: '',
+      width: '',
+      data: {text:text , successButtonString:"Eliminar" }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if(result){
+
+        this.assistService.deleteUserGroup(userGroup.id).subscribe(
+          res =>{
+            console.log(res); 
+
+            this.saveFilters();
+          },
+          err => console.log(err)
+        )
+
+      }
+    });
+
+
+
+
   }
 
 
