@@ -71,7 +71,7 @@ export class CalendarComponent implements OnInit {
           this.days = data.days;
           this.minsEditEvents = data.minsEditEvents;
           this.pendingRecieveCount = data.dataPendingRecieveCount;  
-          console.log(this.days);
+          //console.log(this.days);
 
         },
         error => {
