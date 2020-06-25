@@ -38,7 +38,7 @@
         
 
 
-          <div  [ngClass]="{ 'feast-day' : day.feastDay ,'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()  && monthNumber == 0}" title="{{ day.feastDay ? 'FESTIVO' : '' }}">
+          <div  [ngClass]="{ 'feast-day' : day.feastDay ,'day col-sm p-2 border border-left-0 border-top-0 text-truncate' : true ,'not-cur-month d-none d-sm-inline-block bg-light text-muted' : !day.currentMonth, 'current-day' : day.monthDay == currentDate.getDate()  && monthNumber == 0  && day.currentMonth == true}" title="{{ day.feastDay ? 'FESTIVO' : '' }}">
 
      
             <div   [ngClass]="{ 'event-container' : true }" >
