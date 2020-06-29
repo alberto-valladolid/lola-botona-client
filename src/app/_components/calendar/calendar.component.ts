@@ -57,6 +57,8 @@ export class CalendarComponent implements OnInit {
         },
         error => {
           console.log(error);
+          if(error.status == 401)
+            this.logout();  
           
     });
 
@@ -263,6 +265,10 @@ export class CalendarComponent implements OnInit {
   }
 
 
+  logout() {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
 
   
 }
