@@ -123,8 +123,12 @@ export class AssistsComponent implements OnInit {
     if(this.options.toDate.value != null)
       this.selectedSort.toDate =     formatDate(this.options.toDate.value);
     
-    this.getData(); 
    
+    setTimeout(() => 
+    {
+      this.getData(); 
+    },
+    1000);
 
   }
 
@@ -153,6 +157,7 @@ export class AssistsComponent implements OnInit {
   
           });
 
+          
 
         },
         error => {

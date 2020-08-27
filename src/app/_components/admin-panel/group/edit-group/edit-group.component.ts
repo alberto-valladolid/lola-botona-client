@@ -22,6 +22,8 @@ export class EditGroupComponent implements OnInit {
 
   //for tittle
   dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sabado","Domingo"];
+
+
   tittle: string; 
 
 
@@ -63,7 +65,13 @@ export class EditGroupComponent implements OnInit {
           this.optionSelected = "No"; 
         }
 
-        this.tittle = this.dias[this.group.dayofweek] + " - "+ this.group.showorder ;
+
+        if(this.group.dayofweek == 1){
+          this.tittle = "Domingo - "+ this.group.showorder 
+        }else{
+          this.tittle = this.dias[this.group.dayofweek-2] + " - "+ this.group.showorder 
+        }
+
 
       },
       err => console.log(err)

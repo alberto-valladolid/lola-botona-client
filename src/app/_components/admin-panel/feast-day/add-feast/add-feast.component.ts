@@ -31,20 +31,20 @@ export class AddFeastComponent implements OnInit {
 
   onSubmit() {
 
-    //alert(this.date.value); 
+   
 
     this.errorMsg = null; 
 
-    this.feastDay.date = this.date.value; 
+    this.feastDay.date = this.date.value.getDate() +"/"+ (this.date.value.getMonth()+1)  +"/"+ (this.date.value.getFullYear()) ;
 
-    this.feastDayService.addFeastDay(this.feastDay).subscribe(
-      res =>{
-        this.router.navigate(['/admin/feast-day']);
-      },
-      err =>{
-        this.errorMsg = err.error.message; 
-      } 
-    )
+     this.feastDayService.addFeastDay(this.feastDay).subscribe(
+        res =>{
+          this.router.navigate(['/admin/feast-day']);
+        },
+        err =>{
+          this.errorMsg = err.error.message; 
+        } 
+    ) 
     
   }
 

@@ -78,6 +78,8 @@ export class CalendarComponent implements OnInit {
         },
         error => {
           console.log(error);
+          if(error.status == 401)
+            this.logout();
           
     });
 
