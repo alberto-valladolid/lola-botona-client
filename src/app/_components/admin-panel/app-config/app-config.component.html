@@ -8,10 +8,16 @@
       </div>
 
       <div class="form-group">
-          <label for="eventMinutes">Bloquear eventos cuando vayan a comenzar en menos de ( minutos):  </label>
+        <label for="eventMinutes">Permitir anular clases cuando falten menos de x ( minutos) para su comienzo. También permite recuperar clases desde este momento.  </label>
+        <input type="number"  placeholder="Minutos" id="eventMinutesToAllow" name="eventMinutesToAllow" [(ngModel)]="appConfig.eventMinutesToAllow" class="form-control" required >
+      </div>
+
+      <div class="form-group">
+          <label for="eventMinutesToAllow">Bloquear eventos cuando vayan a comenzar en menos de ( minutos):  </label>
           <input type="number"  placeholder="Minutos" id="eventMinutes" name="eventMinutes" [(ngModel)]="appConfig.eventMinutes" class="form-control" required >
       </div>
 
+  
       <div *ngIf="errorMsg" class="alert alert-danger">
         {{errorMsg}}
       </div>

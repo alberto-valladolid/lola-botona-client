@@ -13,7 +13,8 @@ export class AppConfigComponent implements OnInit {
   succesMsg = null; 
 
   appConfig  = {
-
+    
+    eventMinutesToAllow:null,
     eventMinutes:null,
     absenceDays :null
     
