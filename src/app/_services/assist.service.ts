@@ -27,7 +27,7 @@ export class AssistService {
 
   }
 
-  addAssist(group: {id: any,  date: string,  userId: any, groupId: any}){
+  addAssist(group: {id: any,  date: string,  userId: any, groupId: any, addDeleteRetrieve:string}){
     return this.http.post(adminApiUrl + '/events', group, { responseType: 'json' }); 
   }
 

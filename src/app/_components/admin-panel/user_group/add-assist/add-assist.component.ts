@@ -20,10 +20,12 @@ export class AddAssistComponent implements OnInit {
     date: null,
     type :null,
     groupId:null,
-    userId:null
+    userId:null,
+    addDeleteRetrieve:null
     
   }; 
 
+  disableButtons : boolean = false; 
 
   options: any = {
     types: 
@@ -36,6 +38,7 @@ export class AddAssistComponent implements OnInit {
     userIds: [],
     groupIds : [],
     date : new FormControl()
+
  
   };
 
@@ -50,14 +53,23 @@ export class AddAssistComponent implements OnInit {
 
     console.log(this.options); 
 
+
+
+
   }
 
   onSubmit() {
 
     this.assist.date = this.options.date.value; 
+    //this.assist.addDeleteRetrieve = this.options.addDeleteRetrieve.value; 
 
 
-    if((this.assist.type == "absence" || this.assist.type == "retrieve")  && this.options.date.value == null ){
+
+
+
+   
+
+    if((this.assist.type == "absence" || this.assist.type == "retrieve")   && this.options.date.value == null ){
 
       var text  = "Es necesario seleccionar una fecha para las ausencias o las recuperaciones";
       this.matDialog.open(InfoDialogComponent, {
@@ -66,6 +78,14 @@ export class AddAssistComponent implements OnInit {
         data: {text:text , button:"Aceptar" }
       });
 
+    }else if((this.assist.type == "absence" || this.assist.type == "retrieve")   &&  this.assist.addDeleteRetrieve == null){
+
+      var text  = "Es necesario seleccionar una opción en el desplegable 'Generar falta/consumir falta' cuando se quiere crear una una ausencia o una recuperación";
+      this.matDialog.open(InfoDialogComponent, {
+        height: '',
+        width: '',
+        data: {text:text , button:"Aceptar" }
+      });
 
     }else{
 
@@ -78,7 +98,7 @@ export class AddAssistComponent implements OnInit {
         err =>{
           this.errorMsg = err.error.message; 
         } 
-      )
+      ) 
     }
     // console.log(this.assist);
     // console.log(this.options);
@@ -105,6 +125,16 @@ export class AddAssistComponent implements OnInit {
     });
   }
 
+
+/*   onChangeTypeSelect(value:string){
+    
+    if(value=="absence" || value=="retrieve" )
+      this.options['date'].enable();
+    else{
+      this.options['date'].disable();
+
+    }
+  } */
 
   
   retrieveUsers(){

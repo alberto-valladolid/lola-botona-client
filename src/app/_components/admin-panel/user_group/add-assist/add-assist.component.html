@@ -35,8 +35,22 @@
             <mat-label>Selecciona una fecha (únicamente en caso de ausencia o recuperación)</mat-label>
             <input matInput id="date" class="date"  [matDatepicker]="picker"  [formControl]="options.date" disabled>
             <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #picker  startView="year" disabled="false" ></mat-datepicker>    
+            <mat-datepicker id="buttonDatePicker" touchUi #picker  startView="year"      disabled="false" ></mat-datepicker>    
         </mat-form-field>
+
+        
+        <div class="form-group">
+            <label for="addDeleteRetrieve">Generar falta/consumir falta:</label>
+            <select class="custom-select"  id="addDeleteRetrieve" name="addDeleteRetrieve" [(ngModel)]="assist.addDeleteRetrieve" class="form-control"  autofocus >     
+                <option  value=""></option>
+                <option  value="true">Si</option>
+                <option  value="false">No</option>
+            </select>
+            SI (genera falta en ausencia y resta falta si es una recuperacion)  <br>
+            NO (no genera falta en ausencia ni resta falta en recuperacion) 
+        </div> 
+
+
 
 
         <div *ngIf="errorMsg" class="alert alert-danger">
