@@ -13,6 +13,8 @@
             <th>Opciones</th>
             <th>Nombre</th>
             <th>Perfil</th>
+            <th>Tipo usuario</th>
+            <th>Profesores</th>
 
           </tr>
         </thead>
@@ -29,6 +31,14 @@
             </td>
             <td>{{user.name }}</td>
             <td>{{user.role}}</td>
+            <td *ngIf="user.type  == 'alumn'">Alumno</td>
+            <td *ngIf="user.type  == 'teacher'">Profesor</td>
+            <td *ngIf="!user.type"></td>
+      
+            <td >
+              <span *ngFor="let teacher of user.userTeacherSet" > ( {{ teacher.teacherUsername}} - {{ teacher.teacherName}})</span>
+            </td>
+
 
           </tr>
         </tbody>

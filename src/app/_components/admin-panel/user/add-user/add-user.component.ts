@@ -1,6 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { UserService } from '../../../../_services/user.service';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-user',
@@ -13,19 +15,42 @@ export class AddUserComponent implements OnInit {
 
   errorMsg = null; 
 
+  teacherMultiSelect = new FormControl();
+  teachers: any[];
+  
+
+  options: any[] = [
+    {value: 'alumn', viewValue: 'Alumno'},
+    {value: 'teacher', viewValue: 'Profesor'},
+
+
+  ];
+  optionSelected: any;
+
   user  = {
 
     id:null,
     username: "",
     role : "ROLE_USER",
     name:"",
-    password : "temporal",        
+    password : "temporal",
+    type:null    ,
+    teachers: []
     
   }; 
 
   constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit(): void {
+
+    this.userService.getAllTeachers().subscribe(
+      res =>{
+      
+        this.teachers = res;   
+        //console.log(this.teachers); 
+      },
+      err => console.log(err)
+    )
  
   }
 
@@ -33,7 +58,11 @@ export class AddUserComponent implements OnInit {
   onSubmit() {
 
     this.errorMsg = null;   
-    //console.log(this.user); 
+
+    this.user.type=this.optionSelected;
+
+    this.user.teachers=this.teacherMultiSelect.value;
+
     this.userService.addUser(this.user).subscribe(
       res =>{
         this.router.navigate(['/admin/user']);
@@ -42,7 +71,10 @@ export class AddUserComponent implements OnInit {
         console.log(err);
         this.errorMsg = err.error.message; 
       } 
-    )
+    ) 
+
+
+    
   }
 
 

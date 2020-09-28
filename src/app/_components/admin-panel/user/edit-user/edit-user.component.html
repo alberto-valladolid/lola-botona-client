@@ -22,10 +22,31 @@
               <input type="text"  name="role" id="role" [(ngModel)]="user.role"  class="form-control" required disabled >
           </div>
 
+          <div class="form-group">
+            <label id="example-radio-group-label">Tipo de usuario: </label>
+            <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            [(ngModel)]="optionSelected" 
+            name="activo">
+            <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option.value" required>
+                {{option.viewValue}}
+            </mat-radio-button>
+            </mat-radio-group>           
+          </div>
+    
+          <mat-form-field class="multiSelect">
+            <mat-label>Profesores asignados</mat-label>
+            <mat-select [formControl]="teacherMultiSelect" multiple>
+              <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">{{teacher.username}} - {{teacher.name}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
           <div *ngIf="errorMsg" class="alert alert-danger">
             {{errorMsg}}
           </div>
-
+          <br>
           <button class="btn btn-dark" type="submit" >Guardar</button>
           <button class="btn btn-dark marginLeft20"  routerLink="/admin/user">Volver</button>
       </form>

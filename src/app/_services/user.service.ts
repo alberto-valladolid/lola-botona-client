@@ -55,5 +55,10 @@ export class UserService {
  
   }
 
+  getAllTeachers() : Observable<any>{
+    return this.http.get(adminApiUrl + '/users/teachers',  { responseType: 'json' }); 
+ 
+  }
+
 
 }

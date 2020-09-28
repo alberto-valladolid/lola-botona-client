@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 
 import { UserService } from '../../../../_services/user.service';
 import {Router, ActivatedRoute} from '@angular/router'; 
+import { FormControl } from '@angular/forms';
 
 
 
@@ -13,48 +14,90 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class EditUserComponent implements OnInit {
 
   errorMsg = null; 
+
+  optionSelected: string;
+  options: any[] = [
+    {value: 'alumn', viewValue: 'Alumno'},
+    {value: 'teacher', viewValue: 'Profesor'},
+  ];
   
-  asdf = null; 
+  teacherMultiSelect = new FormControl();
+  teachers: any[] = [];
+  idTeachersAsigned: any[] = [];
+
   user  = {
 
     id:null,
     username: "",
     role : "ROLE_USER",
     name:"",
-    password : "",        
+    password : "",     
+    type:"",  
+    teachers:[],
     
   }; 
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService,private router: Router) { }
 
   ngOnInit(): void {
-    
+
+
     const params = this.activatedRoute.snapshot.params; 
 
     this.user.id = params.id;      
 
-    this.userService.getUserById(params.id).subscribe(
+    this.userService.getAllTeachers().subscribe(
       res =>{
+      
+        this.teachers = res; 
 
-        this.user.id = res.id; 
-        this.user.username = res.username; 
-        this.user.role = res.role; 
-        this.user.name = res.name; 
-
+ 
       },
       err => console.log(err)
     )
 
+    this.userService.getUserById(params.id).subscribe(
 
+      res =>{
+
+        this.user.id = res.user.id; 
+        this.user.username = res.user.username; 
+        this.user.role = res.user.role; 
+        this.user.name = res.user.name; 
+        this.user.type = res.user.type; 
+       
+
+        if(res.user.type == "alumn"){
+          this.optionSelected = "alumn"; 
+        }else if(res.type == "teacher"){
+          this.optionSelected = "teacher"; 
+        }
+       
+      
+
+        res.UserTeachers.forEach(teacher => 
+          this.idTeachersAsigned.push(teacher)
+         
+        );
+
+console.log( this.idTeachersAsigned); 
+        this.teacherMultiSelect.setValue(this.idTeachersAsigned); 
+ 
+      },
+      err => console.log(err)
+    )
+
+ 
 
   }
 
 
   onSubmit() {
 
-     console.log(this.user); 
 
-    // delete this.user.groupSet;
+    this.user.type=this.optionSelected;
+    this.user.teachers=this.teacherMultiSelect.value;
+
     
     this.errorMsg = null;   
     this.userService.editUser(this.user).subscribe(
@@ -65,7 +108,7 @@ export class EditUserComponent implements OnInit {
         console.log(err);
         this.errorMsg = err.error.message; 
       } 
-    )
+    ) 
   }
 
 

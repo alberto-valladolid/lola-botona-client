@@ -13,6 +13,20 @@
    margin-left: 0px !important; 
 }
  
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+  
+  }
+
+.multiSelect{
+    width:100%;
+    display: block;
+}
+
+.btn{
+    margin-bottom:30px; 
+}
 /* @media screen and (max-width: 767px){
 
     .user-container{
