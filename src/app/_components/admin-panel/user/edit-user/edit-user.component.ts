@@ -41,9 +41,7 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     const params = this.activatedRoute.snapshot.params; 
-
     this.user.id = params.id;      
 
     this.userService.getAllTeachers().subscribe(
@@ -66,35 +64,29 @@ export class EditUserComponent implements OnInit {
 
         if(res.user.type == "alumn"){
           this.optionSelected = "alumn"; 
-        }else if(res.type == "teacher"){
+        }else if(res.user.type == "teacher"){
           this.optionSelected = "teacher"; 
         }
        
-      
+      console.log(this.optionSelected); 
 
         res.UserTeachers.forEach(teacher => 
           this.idTeachersAsigned.push(teacher)
          
         );
-
-console.log( this.idTeachersAsigned); 
+ 
         this.teacherMultiSelect.setValue(this.idTeachersAsigned); 
  
       },
       err => console.log(err)
     )
-
- 
-
   }
 
 
   onSubmit() {
 
-
     this.user.type=this.optionSelected;
     this.user.teachers=this.teacherMultiSelect.value;
-
     
     this.errorMsg = null;   
     this.userService.editUser(this.user).subscribe(
@@ -107,7 +99,6 @@ console.log( this.idTeachersAsigned);
       } 
     ) 
   }
-
 
 
 }
