@@ -51,7 +51,7 @@ export class AddAssistComponent implements OnInit {
     this.retrieveGroups();
     this.retrieveUsers(); 
 
-    console.log(this.options); 
+    //console.log(this.options); 
 
 
 
@@ -110,14 +110,14 @@ export class AddAssistComponent implements OnInit {
     this.groupService.getAllGroups()
     .subscribe(
       data => {
-        this.options.groupIds = data;
-        var dias = ["ERROR","Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"];
+        this.options.groupIds = data.groups;
+        var dias = ["ERROR","7 Domingo","1 Lunes","2 Martes","3 Miércoles","4 Jueves","5 Viernes","6 Sabado"];
         this.options.groupIds.forEach(function (group) {
         
           group.groupString = dias[group.dayofweek] + " - " + group.description; 
 
         });
-
+        this.options.groupIds.sort((a,b) => a.groupString.localeCompare(b.groupString));
       },
       error => {
         console.log(error);
@@ -150,7 +150,7 @@ export class AddAssistComponent implements OnInit {
           user.userString = user.username + " - " + user.name; 
        
         });
-
+        this.options.userIds.sort((a,b) => a.userString.localeCompare(b.userString));
       },
       error => {
         console.log(error);

@@ -23,8 +23,9 @@ export class GroupComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   dtGroups :any;
+  teachers = {}; 
 
-    //For update/detele group view
+  //For update/detele group view
     @ViewChild(DataTableDirective) dtElement: DataTableDirective;
 
   constructor(private groupService: GroupService,private chRef : ChangeDetectorRef,private router: Router,private matDialog: MatDialog) { }
@@ -72,7 +73,13 @@ export class GroupComponent implements OnInit {
     this.groupService.getAllGroups()
       .subscribe(
         data => {
-          this.groups = data;
+          var teacherHolder = {}; 
+          data.teachers.forEach(function (teacher) { 
+            teacherHolder[teacher.id] = teacher; 
+          });
+          this.teachers = teacherHolder; 
+     
+          this.groups = data.groups;    
           this.chRef.detectChanges();
           this.dtTrigger.next();
 
@@ -92,7 +99,12 @@ export class GroupComponent implements OnInit {
         this.groupService.getAllGroups()
           .subscribe(
             data => {
-              this.groups = data;              
+              var teacherHolder = {}; 
+              data.teachers.forEach(function (teacher) { 
+                teacherHolder[teacher.id] = teacher; 
+              });
+              this.teachers = teacherHolder;               
+              this.groups = data.groups;
               this.chRef.detectChanges();
               this.dtTrigger.next();
             },

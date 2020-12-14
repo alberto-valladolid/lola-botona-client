@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GroupService } from 'src/app/_services/group.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-edit-group',
@@ -20,6 +21,9 @@ export class EditGroupComponent implements OnInit {
   options: string[] = ["Si", "No"];  
 
 
+  //Teachers
+  teachers:any [];
+
   //for tittle
   dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sabado","Domingo"];
 
@@ -35,15 +39,17 @@ export class EditGroupComponent implements OnInit {
     dayofweek : null,    
     showorder  : ""  ,
     startTimeHours:null,
-    startTimeMins:null
+    startTimeMins:null,
+    teacherId:null
   }; 
 
 
-  constructor( private activatedRoute: ActivatedRoute,private router: Router, private groupService: GroupService ) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,private router: Router, private groupService: GroupService ) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params; 
 
+    this.retrieveTeachers(); 
     this.group.id = params.id;      
 
     this.groupService.getGroupById(params.id).subscribe(
@@ -56,8 +62,7 @@ export class EditGroupComponent implements OnInit {
         this.group.showorder = res.showorder; 
         this.group.startTimeHours = res.startTime.substring(0,2); 
         this.group.startTimeMins = res.startTime.substring(3,5); 
-
-        console.log(this.group.startTimeMins); 
+        this.group.teacherId = res.teacherid;
 
         if(res.active){
           this.optionSelected = "Si"; 
@@ -97,6 +102,19 @@ export class EditGroupComponent implements OnInit {
         this.errorMsg = err.error.message; 
       } 
     )
- }
+  }
 
+  retrieveTeachers(){
+    this.userService.getAllTeachers()
+    .subscribe(
+      data => {
+        this.teachers = data;
+        this.teachers.forEach(function (teacher) {
+          teacher.teacherString = teacher.username + " - " + teacher.name;        
+        });
+      },
+      error => {
+        console.log(error);        
+    });
+  }
 }

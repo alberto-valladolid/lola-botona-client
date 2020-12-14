@@ -47,11 +47,8 @@ export class EditUserComponent implements OnInit {
     this.user.id = params.id;      
 
     this.userService.getAllTeachers().subscribe(
-      res =>{
-      
-        this.teachers = res; 
-
- 
+      res =>{      
+        this.teachers = res;  
       },
       err => console.log(err)
     )

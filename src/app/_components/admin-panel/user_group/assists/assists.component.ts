@@ -248,7 +248,7 @@ export class AssistsComponent implements OnInit {
     this.groupService.getAllGroups()
     .subscribe(
       data => {
-        this.options.groupIds = data;
+        this.options.groupIds = data.groups;
         var dias = ["ERROR","Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"];
         this.options.groupIds.forEach(function (group) {
         

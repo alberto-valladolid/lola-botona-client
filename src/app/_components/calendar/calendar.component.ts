@@ -24,7 +24,7 @@ export class CalendarComponent implements OnInit {
   currentDate: Date; 
   days; 
   minsEditEvents;
-  pendingRecieveCount; 
+  pendingRecieves; 
 
   constructor(private calendarService: CalendarService,private userService: UserService,private matDialog: MatDialog,private tokenStorageService: TokenStorageService) { }
 
@@ -51,9 +51,7 @@ export class CalendarComponent implements OnInit {
         data => {
           this.days = data.days;
           this.minsEditEvents = data.minsEditEvents;
-          this.pendingRecieveCount = data.dataPendingRecieveCount;  
-          //console.log(data);
-
+          this.pendingRecieves = data.dataPendingRecieveCount;  
         },
         error => {
           console.log(error);
@@ -72,9 +70,7 @@ export class CalendarComponent implements OnInit {
         data => {
           this.days = data.days;
           this.minsEditEvents = data.minsEditEvents;
-          this.pendingRecieveCount = data.dataPendingRecieveCount;  
-          //console.log(this.days);
-
+          this.pendingRecieves = data.dataPendingRecieveCount;  
         },
         error => {
           console.log(error);
@@ -89,22 +85,13 @@ export class CalendarComponent implements OnInit {
 
   previousMonth(){
   
-
-    
     this.monthNumber --; 
-
     var nexMonthDate = new Date();
-
     nexMonthDate.setMonth(nexMonthDate.getMonth() + this.monthNumber); 
 
     if(nexMonthDate.getDate() != this.currentDate.getDate()) nexMonthDate.setDate(0);
 
-
     this.date =  " " + this.month[nexMonthDate.getMonth()] +" "+ nexMonthDate.getFullYear(); 
-
-
-    
-
     this.days = null; 
     this.reRenderCalendar();
 
@@ -113,16 +100,11 @@ export class CalendarComponent implements OnInit {
   nextMonth(){
 
     this.monthNumber ++; 
-
     var nexMonthDate = new Date();
-
     nexMonthDate.setMonth(nexMonthDate.getMonth() + this.monthNumber); 
 
     if(nexMonthDate.getDate() != this.currentDate.getDate()) nexMonthDate.setDate(0);
-
-
     this.date =  " " + this.month[nexMonthDate.getMonth()] +" "+ nexMonthDate.getFullYear(); 
-
     this.days = null; 
     this.reRenderCalendar();
 

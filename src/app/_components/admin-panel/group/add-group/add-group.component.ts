@@ -1,6 +1,7 @@
 import { Component, OnInit , HostBinding} from '@angular/core';
 import { GroupService } from '../../../../_services/group.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-add-group',
@@ -18,7 +19,8 @@ export class AddGroupComponent implements OnInit {
   
   dayofweek : string; 
 
-
+  //Teachers
+  teachers:any [];
 
   group  = {
 
@@ -29,13 +31,15 @@ export class AddGroupComponent implements OnInit {
     dayofweek : null,    
     showorder  : "" ,
     startTimeHours:null,
-    startTimeMins:null
+    startTimeMins:null,
+    teacherId:null
     
   }; 
 
-  constructor(private groupService: GroupService,private router: Router) { }
+  constructor(private groupService: GroupService,private router: Router,private userService: UserService) { }
   
   ngOnInit(): void {
+    this.retrieveTeachers(); 
   }
 
   onSubmit() {
@@ -46,6 +50,7 @@ export class AddGroupComponent implements OnInit {
       this.group.active = false;
     }
     this.group.dayofweek = Number(this.dayofweek); 
+    this.group.teacherId = Number(this.group.teacherId); 
 
     this.errorMsg = null;  
 
@@ -58,5 +63,22 @@ export class AddGroupComponent implements OnInit {
         this.errorMsg = err.error.message; 
       } 
     )
+  }
+  retrieveTeachers(){
+
+    this.userService.getAllTeachers()
+    .subscribe(
+      data => {
+        this.teachers = data;
+
+ /*     this.teachers.forEach(function (teacher) {
+          teacher.teacherString = teacher.username + " - " + teacher.name;        
+        }); */
+
+      },
+      error => {
+        console.log(error);
+        
+    });
   }
 }

@@ -16,6 +16,7 @@
             <th>Descripción</th>
             <th>Plazas</th>
             <th>Activo</th>
+            <th>Profesor</th>
 
           </tr>
         </thead>
@@ -23,13 +24,13 @@
           <tr [ngSwitch]="group.dayofweek" *ngFor="let group of groups" class="text-center">   
 
       
-              <td *ngSwitchCase="2">Lunes</td>
-              <td *ngSwitchCase="3">Martes</td>
-              <td *ngSwitchCase="4">Miércoles</td>
-              <td *ngSwitchCase="5">Jueves</td>
-              <td *ngSwitchCase="6">Viernes</td>
-              <td *ngSwitchCase="7">Sabado</td>
-              <td *ngSwitchCase="1">Domingo</td>
+              <td *ngSwitchCase="2">1 Lunes</td>
+              <td *ngSwitchCase="3">2 Martes</td>
+              <td *ngSwitchCase="4">3 Miércoles</td>
+              <td *ngSwitchCase="5">4 Jueves</td>
+              <td *ngSwitchCase="6">5 Viernes</td>
+              <td *ngSwitchCase="7">6 Sabado</td>
+              <td *ngSwitchCase="1">7 Domingo</td>
               
             <td>
               <div class="btn-group " role="group">
@@ -43,6 +44,12 @@
             <td>{{group.capacity }}</td>
             <td>{{group.active}}</td>
 
+            <ng-container *ngIf="group.teacherid">                       
+              <th >{{teachers[group.teacherid].name}}</th>          
+            </ng-container>
+            <ng-container *ngIf="!group.teacherid">                       
+              <th ></th>          
+            </ng-container>   
           </tr>
         </tbody>
       </table>

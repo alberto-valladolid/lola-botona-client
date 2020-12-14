@@ -9,9 +9,28 @@
 
     </div>
 
+    <div id="boton-collapseFaltasPendientes-container">  
+        <a class="btn btn-dark" id="boton-collapseFaltasPendientes" data-toggle="collapse" href="#collapseFaltasPendientes" role="button" aria-expanded="false" aria-controls="collapseFaltasPendientes">
+          Faltas pendientes
+        </a>
+    </div>
+    <div class="collapse" id="collapseFaltasPendientes">
+      <div class="card card-body">
+        <ng-container *ngIf="pendingRecieves != null ; else noPendingRetrieve ">
+          <ul class="mb0">
+            <ng-container  *ngFor="let pendingRecieve of pendingRecieves" >
+              <li>El día {{pendingRecieve.dateat | date: 'dd/MM/yyyy'}} </li>
+            </ng-container>
+          </ul>
+        </ng-container>
+        <ng-template #noPendingRetrieve>
+          No tiene faltas pendientes de recuperar
+        </ng-template>
+      </div>
+    </div>
     <header>      
       <div class="row d-none d-sm-flex p-1 bg-dark text-white non-abrev">
-        <h5 class="col-sm p-1 text-center">Lunes</h5>
+        <h5 class="col-sm p-1 text-center">Lunes</h5> 
         <h5 class="col-sm p-1 text-center">Martes</h5>
         <h5 class="col-sm p-1 text-center">Miércoles</h5>
         <h5 class="col-sm p-1 text-center">Jueves</h5>

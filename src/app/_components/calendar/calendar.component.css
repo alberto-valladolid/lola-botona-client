@@ -40,12 +40,27 @@
 }
 
 
+@media  (max-width:626px) {
+
+    #boton-collapseFaltasPendientes{
+        margin-top: 1rem;
+        
+    }
+    
+    #boton-collapseFaltasPendientes-container {
+        text-align: center;
+    }
+    #boton-collapseFaltasPendientes {
+        display: inline-block;
+    }
+
+}
+
 @media (min-width: 576px)   {
     .day {
         /* height: 14.2857vw; */
         min-height:150px; 
     }
-
 
 }
 
@@ -86,7 +101,7 @@
 }
 
 header{
-    padding-top: 30px;
+    padding-top: 1rem; 
 }
 
 .event{
@@ -174,4 +189,11 @@ header{
 
 .current-day{
     background-color:powderblue !important; 
+}
+
+#collapseFaltasPendientes{
+    margin-top:1rem; 
+}
+.mb0{
+    margin-bottom: 0px;
 }
