@@ -25,6 +25,7 @@ export class CalendarComponent implements OnInit {
   days; 
   minsEditEvents;
   pendingRecieves; 
+  minsToRecoverAnAbsence;
 
   constructor(private calendarService: CalendarService,private userService: UserService,private matDialog: MatDialog,private tokenStorageService: TokenStorageService) { }
 
@@ -51,7 +52,9 @@ export class CalendarComponent implements OnInit {
         data => {
           this.days = data.days;
           this.minsEditEvents = data.minsEditEvents;
-          this.pendingRecieves = data.dataPendingRecieveCount;  
+          this.pendingRecieves = data.dataPendingRecieveCount;    
+          this.minsToRecoverAnAbsence = data.minsToRecoverAnAbsence;
+
         },
         error => {
           console.log(error);

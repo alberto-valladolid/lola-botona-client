@@ -16,14 +16,16 @@
     </div>
     <div class="collapse" id="collapseFaltasPendientes">
       <div class="card card-body">
-        <ng-container *ngIf="pendingRecieves != null ; else noPendingRetrieve ">
-          <ul class="mb0">
-            <ng-container  *ngFor="let pendingRecieve of pendingRecieves" >
+        <ng-container *ngIf="pendingRecieves.length  > 0 ; else noPendingRetrieve ">
+          <p>Dispone de {{minsToRecoverAnAbsence}} días desde el día de la ausencia para recuperar las clases.</p>
+          <ul class="mb0">            
+            <ng-container  *ngFor="let pendingRecieve of pendingRecieves" >              
               <li>El día {{pendingRecieve.dateat | date: 'dd/MM/yyyy'}} </li>
             </ng-container>
           </ul>
         </ng-container>
         <ng-template #noPendingRetrieve>
+          
           No tiene faltas pendientes de recuperar
         </ng-template>
       </div>
